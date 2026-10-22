@@ -1,0 +1,485 @@
+{
+  "schemaVersion": 2,
+  "generatedAt": "2026-09-13T23:08:18.051Z",
+  "title": "Design System: Portfolio PDP",
+  "extensions": {
+    "colorMeta": {
+      "authority-navy": {
+        "role": "primary",
+        "displayName": "Authority Navy",
+        "canonical": "oklch(24% 0.081 258)",
+        "tonalRamp": [
+          "oklch(15% 0.055 258)",
+          "oklch(24% 0.081 258)",
+          "oklch(35% 0.092 258)",
+          "oklch(46% 0.098 258)",
+          "oklch(58% 0.098 258)",
+          "oklch(69% 0.088 258)",
+          "oklch(82% 0.068 258)",
+          "oklch(95% 0.020 258)"
+        ]
+      },
+      "attention-blue": {
+        "role": "primary",
+        "displayName": "Attention Blue",
+        "canonical": "oklch(80% 0.076 258)",
+        "tonalRamp": [
+          "oklch(15% 0.055 258)",
+          "oklch(24% 0.081 258)",
+          "oklch(35% 0.092 258)",
+          "oklch(46% 0.098 258)",
+          "oklch(58% 0.098 258)",
+          "oklch(69% 0.088 258)",
+          "oklch(80% 0.076 258)",
+          "oklch(95% 0.020 258)"
+        ]
+      },
+      "attention-tint": {
+        "role": "primary",
+        "displayName": "Attention Tint",
+        "canonical": "rgba(157, 193, 243, .1)"
+      },
+      "signal-yellow": {
+        "role": "secondary",
+        "displayName": "Signal Yellow",
+        "canonical": "oklch(91% 0.172 105)",
+        "tonalRamp": [
+          "oklch(30% 0.070 105)",
+          "oklch(42% 0.098 105)",
+          "oklch(54% 0.126 105)",
+          "oklch(65% 0.147 105)",
+          "oklch(75% 0.161 105)",
+          "oklch(83% 0.168 105)",
+          "oklch(91% 0.172 105)",
+          "oklch(97% 0.060 105)"
+        ]
+      },
+      "amber-star": {
+        "role": "tertiary",
+        "displayName": "Amber Star",
+        "canonical": "oklch(75% 0.160 62)",
+        "tonalRamp": [
+          "oklch(28% 0.070 62)",
+          "oklch(38% 0.096 62)",
+          "oklch(49% 0.120 62)",
+          "oklch(60% 0.142 62)",
+          "oklch(70% 0.156 62)",
+          "oklch(75% 0.160 62)",
+          "oklch(85% 0.108 62)",
+          "oklch(95% 0.040 62)"
+        ]
+      },
+      "paper": {
+        "role": "neutral",
+        "displayName": "Paper",
+        "canonical": "oklch(98% 0.003 100)",
+        "tonalRamp": [
+          "oklch(15% 0.003 100)",
+          "oklch(28% 0.003 100)",
+          "oklch(40% 0.003 100)",
+          "oklch(52% 0.003 100)",
+          "oklch(65% 0.003 100)",
+          "oklch(78% 0.003 100)",
+          "oklch(90% 0.003 100)",
+          "oklch(98% 0.003 100)"
+        ]
+      },
+      "paper-alt": {
+        "role": "neutral",
+        "displayName": "Paper Alt",
+        "canonical": "oklch(93% 0.025 258)",
+        "tonalRamp": [
+          "oklch(15% 0.025 258)",
+          "oklch(27% 0.032 258)",
+          "oklch(39% 0.036 258)",
+          "oklch(51% 0.038 258)",
+          "oklch(64% 0.036 258)",
+          "oklch(76% 0.032 258)",
+          "oklch(87% 0.028 258)",
+          "oklch(96% 0.012 258)"
+        ]
+      },
+      "paper-card": {
+        "role": "neutral",
+        "displayName": "Paper Card",
+        "canonical": "oklch(100% 0 0)"
+      },
+      "ink-soft": {
+        "role": "neutral",
+        "displayName": "Ink Soft",
+        "canonical": "rgba(2, 32, 68, .85)"
+      },
+      "ink-muted": {
+        "role": "neutral",
+        "displayName": "Ink Muted",
+        "canonical": "rgba(2, 32, 68, .75)"
+      },
+      "ink-faint": {
+        "role": "neutral",
+        "displayName": "Ink Faint",
+        "canonical": "rgba(2, 32, 68, .70)"
+      },
+      "line": {
+        "role": "neutral",
+        "displayName": "Hairline",
+        "canonical": "rgba(2, 32, 68, .12)"
+      },
+      "line-strong": {
+        "role": "neutral",
+        "displayName": "Hairline Strong",
+        "canonical": "rgba(2, 32, 68, .20)"
+      },
+      "on-dark": {
+        "role": "neutral",
+        "displayName": "On Dark",
+        "canonical": "#FAFAF8"
+      },
+      "on-dark-muted": {
+        "role": "neutral",
+        "displayName": "On Dark Muted",
+        "canonical": "rgba(250, 250, 248, .78)"
+      },
+      "on-dark-faint": {
+        "role": "neutral",
+        "displayName": "On Dark Faint",
+        "canonical": "rgba(250, 250, 248, .62)"
+      },
+      "rule-dark": {
+        "role": "neutral",
+        "displayName": "Rule Dark",
+        "canonical": "rgba(250, 250, 248, .18)"
+      },
+      "hatch-a": {
+        "role": "neutral",
+        "displayName": "Hatch Light A",
+        "canonical": "#dbe6f5"
+      },
+      "hatch-b": {
+        "role": "neutral",
+        "displayName": "Hatch Light B",
+        "canonical": "#eef4fc"
+      },
+      "hatch-dark-a": {
+        "role": "neutral",
+        "displayName": "Hatch Dark A",
+        "canonical": "#06305f"
+      },
+      "hatch-dark-b": {
+        "role": "neutral",
+        "displayName": "Hatch Dark B",
+        "canonical": "#042a53"
+      },
+      "scrim": {
+        "role": "neutral",
+        "displayName": "Scrim",
+        "canonical": "rgba(2, 32, 68, .55)"
+      }
+    },
+    "typographyMeta": {
+      "display": {
+        "displayName": "Display",
+        "purpose": "Two uses only: the aggregate rating number and the large step numerals in the dark section."
+      },
+      "headline": {
+        "displayName": "Headline",
+        "purpose": "Every section heading and the closing CTA heading."
+      },
+      "title": {
+        "displayName": "Title",
+        "purpose": "The product name (H1) and the modal title. Deliberately smaller than Headline — see The Shelf Label Rule."
+      },
+      "lead": {
+        "displayName": "Lead",
+        "purpose": "Section leads, the product subhead, and the closing CTA body."
+      },
+      "body": {
+        "displayName": "Body",
+        "purpose": "Prose columns at 16px. Denser contexts use the body-sm and body-xs steps rather than overriding this one."
+      },
+      "label": {
+        "displayName": "Label",
+        "purpose": "Eyebrows, fieldset legends, trust titles and spec group headers at 12px. The 11px variant is label-sm."
+      },
+      "mono": {
+        "displayName": "Mono",
+        "purpose": "Machine-set values only: the primary CTA label, the price band, placeholder captions, the SKU and inline code. Never a heading or a sentence."
+      },
+      "body-sm": {
+        "displayName": "Body Small",
+        "purpose": "15px step: spec values, review bodies, FAQ answers, modal copy. The densest sans reading size."
+      },
+      "body-xs": {
+        "displayName": "Body Extra Small",
+        "purpose": "14px step: card blurbs, trust item bodies, the small nav CTA label."
+      },
+      "meta": {
+        "displayName": "Meta",
+        "purpose": "13px step: rating link, price terms, review meta, spec labels, footer links."
+      },
+      "label-sm": {
+        "displayName": "Label Small",
+        "purpose": "11px tracked uppercase: announcement bar, card flags, modal metadata, placeholder captions."
+      },
+      "price": {
+        "displayName": "Price",
+        "purpose": "18px monospace: the salary band. The only mono step above the CTA label."
+      }
+    },
+    "shadows": [
+      {
+        "name": "object-lift",
+        "value": "0 2px 8px rgba(0, 0, 0, .08)",
+        "purpose": "Soft ambient lift for discrete objects resting on a ground: project cards, review cards, the specs table."
+      },
+      {
+        "name": "object-lift-hover",
+        "value": "0 6px 18px rgba(0, 0, 0, .12)",
+        "purpose": "Project card hover, paired with translateY(-2px)."
+      },
+      {
+        "name": "press-affordance",
+        "value": "rgba(0, 0, 0, .33) 0 4px 4px",
+        "purpose": "Hard graphic shadow belonging to the primary CTA alone, always paired with a 1px solid #000 border. Never extend it to a second element."
+      }
+    ],
+    "motion": [
+      {
+        "name": "state",
+        "value": "150ms",
+        "purpose": "Every hover and selection transition: background-color, color, border-color, box-shadow. Not motion — state feedback — so it survives prefers-reduced-motion."
+      },
+      {
+        "name": "skip-link",
+        "value": "150ms",
+        "purpose": "The skip link dropping into view on focus. Positional, so it is removed under prefers-reduced-motion."
+      },
+      {
+        "name": "card-rise",
+        "value": "translateY(-2px)",
+        "purpose": "The only positional motion in the layout, on project card hover. Removed under prefers-reduced-motion."
+      },
+      {
+        "name": "reduced-motion",
+        "value": "targeted, not blanket",
+        "purpose": "Colour and shadow transitions stay; the card rise and skip-link slide go. The page-level smooth scroll is triggered from JavaScript and reads the preference directly via matchMedia — CSS scroll-behavior cannot reach a scrollIntoView call that passes behavior explicitly."
+      }
+    ],
+    "breakpoints": [
+      {
+        "name": "stack",
+        "value": "900px"
+      },
+      {
+        "name": "compact",
+        "value": "640px"
+      },
+      {
+        "name": "floor",
+        "value": "375px"
+      }
+    ],
+    "measures": [
+      {
+        "name": "shell",
+        "value": "1100px"
+      },
+      {
+        "name": "head",
+        "value": "680px"
+      },
+      {
+        "name": "faq",
+        "value": "760px"
+      },
+      {
+        "name": "cta-body",
+        "value": "460px"
+      },
+      {
+        "name": "modal",
+        "value": "920px"
+      }
+    ],
+    "browserSurfaces": [
+      {
+        "name": "selection",
+        "value": "background var(--accent); color var(--ink)",
+        "purpose": "8.78:1 on both light and navy sections, so one rule covers the page."
+      },
+      {
+        "name": "color-scheme",
+        "value": "light",
+        "purpose": "Declared on :root so UA scrollbars, form controls and default focus rings render against a light page."
+      },
+      {
+        "name": "modal-scrollbar",
+        "value": "scrollbar-width: thin; scrollbar-color: var(--line-strong) transparent",
+        "purpose": "The quick-look panel is the only internally scrollable surface."
+      },
+      {
+        "name": "tabular-nums",
+        "value": "font-variant-numeric: tabular-nums",
+        "purpose": "On the rating breakdown so the 5-to-1 rail and its counts hold register as values change."
+      }
+    ]
+  },
+  "components": [
+    {
+      "name": "Primary CTA",
+      "kind": "button",
+      "refersTo": "button-primary",
+      "description": "The signature pill: Attention Blue fill, navy label, pure-black hairline, hard graphic shadow. Used in all three CTA placements; label is always 'Add to team'.",
+      "html": "<button class=\"ds-btn-primary\" type=\"button\">Add to team</button>",
+      "css": ".ds-btn-primary { display: inline-flex; align-items: center; justify-content: center; height: 56px; padding: 0 28px; border-radius: 40px; background: var(--accent, #9dc1f3); color: var(--ink, #022044); border: 1px solid #000; box-shadow: rgba(0,0,0,.33) 0 4px 4px; font-family: 'IBM Plex Mono', ui-monospace, Menlo, monospace; font-size: 15px; font-weight: 700; letter-spacing: 1px; text-transform: uppercase; cursor: pointer; transition: background-color .15s, color .15s, border-color .15s, box-shadow .15s; } .ds-btn-primary:hover { background: var(--ink, #022044); color: var(--on-dark, #FAFAF8); } .ds-btn-primary:focus-visible { outline: 2px solid var(--ink, #022044); outline-offset: 3px; }"
+    },
+    {
+      "name": "Nav CTA (small)",
+      "kind": "button",
+      "refersTo": "button-primary-sm",
+      "description": "The 36px nav variant. Reverts to the sans face with no tracking or uppercasing — the monospace treatment does not survive at this size.",
+      "html": "<button class=\"ds-btn-sm\" type=\"button\">Add to team</button>",
+      "css": ".ds-btn-sm { display: inline-flex; align-items: center; justify-content: center; height: 36px; padding: 0 18px; border-radius: 40px; background: var(--accent, #9dc1f3); color: var(--ink, #022044); border: 1px solid #000; box-shadow: rgba(0,0,0,.33) 0 4px 4px; font-family: 'Inter', system-ui, -apple-system, sans-serif; font-size: 14px; font-weight: 700; letter-spacing: 0; cursor: pointer; transition: background-color .15s, color .15s; } .ds-btn-sm:hover { background: var(--ink, #022044); color: var(--on-dark, #FAFAF8); } .ds-btn-sm:focus-visible { outline: 2px solid var(--ink, #022044); outline-offset: 3px; }"
+    },
+    {
+      "name": "Variant Radio Pill",
+      "kind": "input",
+      "refersTo": "pill-variant",
+      "description": "The role selector. A real radio visually hidden inside its label; selection swaps a 1.5px hairline for a 2px accent border with padding compensated by 0.5px so nothing shifts.",
+      "html": "<div class=\"ds-pills\"><label class=\"ds-pill\"><input class=\"ds-pill__in\" type=\"radio\" name=\"ds-role\" checked><span class=\"ds-pill__lb\">Creative Strategist</span></label><label class=\"ds-pill\"><input class=\"ds-pill__in\" type=\"radio\" name=\"ds-role\"><span class=\"ds-pill__lb\">Web Strategist</span></label></div>",
+      "css": ".ds-pills { display: grid; grid-template-columns: repeat(auto-fit, minmax(120px, 1fr)); gap: 8px; } .ds-pill { display: block; cursor: pointer; padding: 13px 14px; border: 1.5px solid rgba(2,32,68,.20); border-radius: 8px; background: transparent; color: var(--ink, #022044); transition: border-color .15s, background-color .15s; } .ds-pill:hover { border-color: var(--accent, #9dc1f3); } .ds-pill__in { position: absolute; opacity: 0; width: 0; height: 0; } .ds-pill__lb { display: block; font-family: 'Inter', system-ui, sans-serif; font-size: 14px; font-weight: 700; line-height: 1.3; } .ds-pill:has(.ds-pill__in:checked) { border: 2px solid var(--accent, #9dc1f3); background: rgba(157,193,243,.1); padding: 12.5px 13.5px; } .ds-pill:has(.ds-pill__in:focus-visible) { outline: 2px solid var(--ink, #022044); outline-offset: 3px; }"
+    },
+    {
+      "name": "Project Card",
+      "kind": "card",
+      "refersTo": "card-project",
+      "description": "The quick-look trigger. A full-card button with a hatched image frame, a flex body whose cue is pushed to the bottom so unequal cards still align, and a 2px rise on hover.",
+      "html": "<button class=\"ds-card\" type=\"button\"><span class=\"ds-card__frame\"><span class=\"ds-card__cap\">project image</span></span><span class=\"ds-card__body\"><span class=\"ds-card__flag\">Self-initiated</span><span class=\"ds-card__title\">Checkout copy test</span><span class=\"ds-card__blurb\">A hypothesis, a variant, and a result that went the wrong way.</span><span class=\"ds-card__cue\">Quick look &rarr;</span></span></button>",
+      "css": ".ds-card { display: flex; flex-direction: column; width: 280px; text-align: left; cursor: pointer; background: #ffffff; border: 0; border-radius: 10px; box-shadow: 0 2px 8px rgba(0,0,0,.08); overflow: hidden; color: var(--ink, #022044); font-family: 'Inter', system-ui, sans-serif; transition: box-shadow .15s, transform .15s; } .ds-card:hover { box-shadow: 0 6px 18px rgba(0,0,0,.12); transform: translateY(-2px); } .ds-card:focus-visible { outline: 2px solid var(--ink, #022044); outline-offset: 3px; } .ds-card__frame { position: relative; display: block; aspect-ratio: 4 / 3; border-radius: 10px 10px 0 0; background: repeating-linear-gradient(135deg, #dbe6f5 0 9px, #eef4fc 9px 18px); } .ds-card__cap { position: absolute; left: 50%; top: 50%; transform: translate(-50%, -50%); font: 700 11px 'IBM Plex Mono', ui-monospace, monospace; color: rgba(2,32,68,.75); background: #fff; padding: 6px 10px; border-radius: 4px; white-space: nowrap; } .ds-card__body { display: flex; flex-direction: column; gap: 7px; flex: 1; padding: 18px; } .ds-card__flag { font-size: 11px; font-weight: 700; letter-spacing: 2px; text-transform: uppercase; color: rgba(2,32,68,.70); } .ds-card__title { font-size: 16px; font-weight: 700; line-height: 1.35; } .ds-card__blurb { font-size: 14px; line-height: 1.5; color: rgba(2,32,68,.70); } .ds-card__cue { margin-top: auto; padding-top: 14px; font-size: 12px; font-weight: 700; letter-spacing: 1px; text-transform: uppercase; }"
+    },
+    {
+      "name": "Review Card",
+      "kind": "card",
+      "refersTo": "card-review",
+      "description": "Static white card at 22px padding. Stars are aria-hidden decorative glyphs; the rating is carried as adjacent screen-reader text.",
+      "html": "<div class=\"ds-review\"><p class=\"ds-stars\" aria-hidden=\"true\">★★★★★</p><h3 class=\"ds-review__h\">Read the losing test first</h3><p class=\"ds-review__b\">The write-up of the test that failed told me more than the two that worked.</p><p class=\"ds-review__m\"><span class=\"ds-review__n\">[FILL: name]</span><span class=\"ds-review__v\">Verified project</span></p></div>",
+      "css": ".ds-review { width: 340px; padding: 22px; background: #ffffff; border-radius: 10px; box-shadow: 0 2px 8px rgba(0,0,0,.08); color: var(--ink, #022044); font-family: 'Inter', system-ui, sans-serif; } .ds-stars { display: block; margin: 0 0 10px; color: #f59e0b; font-size: 13px; letter-spacing: 1px; line-height: 1; } .ds-review__h { margin: 0 0 8px; font-size: 16px; font-weight: 700; } .ds-review__b { margin: 0 0 14px; font-size: 15px; line-height: 1.6; color: rgba(2,32,68,.75); } .ds-review__m { display: flex; flex-wrap: wrap; gap: 6px 10px; align-items: center; margin: 0; font-size: 12px; color: rgba(2,32,68,.70); } .ds-review__n { color: var(--ink, #022044); font-weight: 700; } .ds-review__v { color: var(--ink, #022044); font-weight: 600; } .ds-review__v::before { content: '\\2713 '; }"
+    },
+    {
+      "name": "Role Badge",
+      "kind": "chip",
+      "refersTo": "badge-flag",
+      "description": "The page's only yellow element — the 'Best Seller' analogue sitting above the product name. Appears exactly once.",
+      "html": "<span class=\"ds-badge\">Open to offers</span>",
+      "css": ".ds-badge { display: inline-flex; align-items: center; height: 24px; padding: 0 12px; border-radius: 4px; background: #eeee4b; color: var(--ink, #022044); font-family: 'Inter', system-ui, sans-serif; font-size: 11px; font-weight: 700; letter-spacing: 2px; text-transform: uppercase; }"
+    },
+    {
+      "name": "Gallery Thumbnail",
+      "kind": "chip",
+      "refersTo": "thumb",
+      "description": "64px square with a 1.5px border that only changes colour across states — hairline at rest, strong on hover, Attention Blue when aria-current is true.",
+      "html": "<div class=\"ds-thumbs\"><button class=\"ds-thumb\" type=\"button\" aria-current=\"true\"><span class=\"ds-thumb__f\"></span></button><button class=\"ds-thumb\" type=\"button\" aria-current=\"false\"><span class=\"ds-thumb__f\"></span></button></div>",
+      "css": ".ds-thumbs { display: flex; gap: 10px; } .ds-thumb { display: block; width: 64px; height: 64px; padding: 0; cursor: pointer; background: none; border: 1.5px solid rgba(2,32,68,.12); border-radius: 6px; overflow: hidden; transition: border-color .15s; } .ds-thumb:hover { border-color: rgba(2,32,68,.20); } .ds-thumb[aria-current=\"true\"] { border-color: var(--accent, #9dc1f3); } .ds-thumb:focus-visible { outline: 2px solid var(--ink, #022044); outline-offset: 3px; } .ds-thumb__f { display: block; width: 100%; height: 100%; background: repeating-linear-gradient(135deg, #dbe6f5 0 9px, #eef4fc 9px 18px); }"
+    },
+    {
+      "name": "Specs Table",
+      "kind": "custom",
+      "refersTo": "specs-group-header",
+      "description": "The ingredient-table pattern. Navy group headers spanning both columns, alternating white and Paper Alt rows, 8px clipped corners with object lift. The 'Not included' group sets its label in Attention Blue — the one place the accent marks a negative.",
+      "html": "<table class=\"ds-specs\"><tbody><tr class=\"ds-specs__g\"><th colspan=\"2\">Included</th></tr><tr class=\"ds-specs__r\"><th class=\"ds-specs__l\">Research</th><td class=\"ds-specs__v\">Heuristic review, session replay, survey design</td></tr><tr class=\"ds-specs__r\"><th class=\"ds-specs__l\">Build</th><td class=\"ds-specs__v\">HTML, CSS, vanilla JS — no engineering ticket in between</td></tr><tr class=\"ds-specs__g ds-specs__g--x\"><th colspan=\"2\">Not included</th></tr><tr class=\"ds-specs__r\"><th class=\"ds-specs__l\">Agency experience</th><td class=\"ds-specs__v\">None.</td></tr></tbody></table>",
+      "css": ".ds-specs { width: 520px; max-width: 100%; border-collapse: collapse; text-align: left; table-layout: fixed; border-radius: 8px; overflow: hidden; box-shadow: 0 2px 8px rgba(0,0,0,.08); font-family: 'Inter', system-ui, sans-serif; } .ds-specs__g th { padding: 14px 16px; background: var(--ink, #022044); color: var(--on-dark, #FAFAF8); font-size: 12px; font-weight: 700; letter-spacing: 2px; text-transform: uppercase; } .ds-specs__g--x th { color: var(--accent, #9dc1f3); } .ds-specs__r th, .ds-specs__r td { background: #ffffff; } .ds-specs__r:nth-child(even of .ds-specs__r) th, .ds-specs__r:nth-child(even of .ds-specs__r) td { background: #e4edf9; } .ds-specs__l { width: 190px; padding: 16px; vertical-align: top; font-size: 13px; font-weight: 700; letter-spacing: .5px; text-transform: uppercase; color: var(--ink, #022044); } .ds-specs__v { padding: 16px 16px 16px 0; vertical-align: top; font-size: 15px; line-height: 1.6; color: rgba(2,32,68,.75); }"
+    },
+    {
+      "name": "FAQ Row",
+      "kind": "custom",
+      "refersTo": "modal-panel",
+      "description": "Native <details name> so only one opens at a time with no script. Hairline-separated, default marker suppressed, +/− generated from ::before.",
+      "html": "<div class=\"ds-faq\"><details class=\"ds-qa\" name=\"ds-faq\" open><summary class=\"ds-qa__q\"><span>Returns?</span><span class=\"ds-qa__ic\" aria-hidden=\"true\"></span></summary><div class=\"ds-qa__a\"><p>The second card in the grid is a test that lost. It is still there.</p></div></details><details class=\"ds-qa\" name=\"ds-faq\"><summary class=\"ds-qa__q\"><span>Why no client work?</span><span class=\"ds-qa__ic\" aria-hidden=\"true\"></span></summary><div class=\"ds-qa__a\"><p>There isn't any. Every project here is labelled self-initiated.</p></div></details></div>",
+      "css": ".ds-faq { width: 520px; max-width: 100%; border-top: 1px solid rgba(2,32,68,.12); font-family: 'Inter', system-ui, sans-serif; color: var(--ink, #022044); } .ds-qa { border-bottom: 1px solid rgba(2,32,68,.12); } .ds-qa__q { display: flex; align-items: center; justify-content: space-between; gap: 24px; padding: 20px 0; cursor: pointer; font-size: 17px; font-weight: 600; list-style: none; } .ds-qa__q::-webkit-details-marker { display: none; } .ds-qa__q:hover { color: rgba(2,32,68,.75); } .ds-qa__q:focus-visible { outline: 2px solid var(--ink, #022044); outline-offset: 3px; } .ds-qa__ic { flex: none; font-size: 18px; line-height: 1; color: rgba(2,32,68,.75); } .ds-qa__ic::before { content: '+'; } .ds-qa[open] .ds-qa__ic::before { content: '\\2212'; } .ds-qa__a { padding: 0 60px 22px 0; } .ds-qa__a p { margin: 0; font-size: 15px; line-height: 1.7; color: rgba(2,32,68,.75); }"
+    }
+  ],
+  "narrative": {
+    "northStar": "The Deadpan Storefront",
+    "overview": "Commerce grammar played absolutely straight. Every convention of a direct-to-consumer product detail page is present at full retail fidelity — breadcrumb, gallery with thumb rail, buy box, variant radios, trust bar, ingredient table, star-rating breakdown with distribution bars, quick-look modal, closing CTA block — and not one of them is winked at. The product happens to be a person. Nothing in the visual system acknowledges that. The humour, to the extent there is any, is that everything is exactly precise.\n\nThe system is inherited rather than invented. It follows reference/brand-guide.md, the documented visual system of a real DTC supplement brand, adopted 2026-09-13. That inheritance is the argument: a page that merely resembles a storefront would read as pastiche, so this one reproduces a real one's palette logic, type scale, button anatomy and section rhythm closely enough to survive inspection. Two deviations are deliberate and documented in the stylesheet header, both taken for contrast: Attention Blue never carries text on a light ground, and the primary CTA's label is navy rather than white.\n\nThis is the incumbent implementation, accurately captured, not permanent law. The palette and type may eventually give way to the person's own identity. Until they do, treat everything here as binding — the page's whole credibility rests on looking built rather than assembled, and drift is the failure mode. Density is retail-moderate: generous vertical section rhythm, tight component interiors, hairlines instead of boxes, and a hard ceiling of 1100px on content width so the page reads as a column rather than a dashboard.",
+    "keyCharacteristics": [
+      "Navy anchors authority; a single pale blue carries every point of attention",
+      "Flat surfaces, hairline rules, and background alternation instead of shadow scaffolding",
+      "One pill CTA with a black hairline and a hard graphic shadow — the only pressable-looking object on the page",
+      "Monospace reserved for machine-set values: price, CTA label, captions, codes",
+      "Native HTML doing the structural work — <details name>, <dialog>, real radio groups, real <table>",
+      "Every image slot is a hatched placeholder until real assets exist, and looks deliberately unfinished rather than fake"
+    ],
+    "rules": [
+      {
+        "name": "The Fill-Only Rule",
+        "body": "Attention Blue never carries text on a light ground. It appears as a fill, a border, a numeral on navy, or an eyebrow on navy — never as body copy, link text, or a heading on paper. #9dc1f3 on #FAFAF8 is roughly 1.7:1 and fails at any size.",
+        "section": "colors"
+      },
+      {
+        "name": "The Navy Label Rule",
+        "body": "The primary CTA's label is Authority Navy, not white. This is a documented deviation from the source brand guide, taken because white on #9dc1f3 measures about 1.8:1. Navy on the same fill clears AA comfortably. If the CTA fill ever changes, the label colour is re-derived from measurement, never inherited.",
+        "section": "colors"
+      },
+      {
+        "name": "The Never-Twice Rule",
+        "body": "No two consecutive full-width sections share a background. The flow runs paper → paper-alt → paper → paper-alt → navy → paper → paper-alt → paper → navy. Adding a section means re-checking its neighbours, not appending.",
+        "section": "colors"
+      },
+      {
+        "name": "The Navy Punctuation Rule",
+        "body": "Navy appears in the body flow exactly twice: once mid-page (How it works) and once at the close, where the CTA block and footer bar run continuous with no seam between them. A third navy block would turn punctuation into a pattern and flatten the page.",
+        "section": "colors"
+      },
+      {
+        "name": "The Shelf Label Rule",
+        "body": "The product name is set smaller than the section headings above and below it — Title tops out at 36px, Headline at 44px. This is correct and intentional. Real product pages do not set the product name as a hero; the buy box is a dense information block, not a title card. Enlarging the H1 is the single fastest way to make this page stop reading as commerce.",
+        "section": "typography"
+      },
+      {
+        "name": "The Mono Reserve Rule",
+        "body": "IBM Plex Mono appears only where a storefront prints a value rather than a sentence: the price band, the primary CTA label, placeholder captions, the SKU, and code. It never sets a heading, a body paragraph, or a label. The small nav CTA explicitly opts back into the sans face because at 36px height the tracked monospace reads as a system alert.",
+        "section": "typography"
+      },
+      {
+        "name": "The Two-Weight Rule",
+        "body": "Type is 400 or 700. Weights 500 and 600 appear in exactly three places (trust badges, bar labels, the FAQ question) and are inherited from the source guide. Do not introduce a fourth weight to create a new tier — use size and colour.",
+        "section": "typography"
+      },
+      {
+        "name": "The Flat-By-Default Rule",
+        "body": "New surfaces get a background and a hairline, not a shadow. If a thing needs to feel separated, change its ground (paper-card on paper-alt) or give it a 1px line border.",
+        "section": "elevation"
+      },
+      {
+        "name": "The Two Idioms Rule",
+        "body": "Object lift and press affordance never mix, and neither is extended to a new element without a reason stronger than \"it looked flat.\" Adding the hard CTA shadow to a second element destroys the buy action's uniqueness; adding a soft shadow to a section destroys the flatness that makes cards read as objects.",
+        "section": "elevation"
+      }
+    ],
+    "antiReference": "It must not look AI-generated. That is the test every change is measured against, and it is why the don'ts are specific rather than tasteful. A generated page announces itself through a small, recognisable set of moves; this page's credibility depends on containing none of them.",
+    "dos": [
+      "Do keep the section background alternation intact (paper → paper-alt → navy) and re-check neighbours when inserting a section — see The Never-Twice Rule.",
+      "Do reserve Attention Blue for fills, borders, on-navy text and active states — see The Fill-Only Rule.",
+      "Do re-derive a label colour from measured contrast whenever a fill changes, the way the navy CTA label was derived.",
+      "Do use native elements for behaviour that has one — <details name> for the accordion, <dialog> for the modal, a real radio group for the variant selector, a real <table> for specs.",
+      "Do compensate padding when a border thickens on selection, so nothing shifts.",
+      "Do set new type at 400 or 700 and create tiers with size and colour instead of new weights.",
+      "Do keep the product name below section-heading scale — see The Shelf Label Rule.",
+      "Do let hatched frames stay visibly unfinished. A placeholder that looks like a placeholder is honest; a stock photo standing in for real work is not."
+    ],
+    "donts": [
+      "Don't enlarge the H1 into a hero, centre the buy box, or introduce a full-bleed opening statement. The moment the first viewport reads as a portfolio instead of a product page, the entire premise is gone.",
+      "Don't add a gradient of any kind to a surface, a heading, or a button. The only gradients in this system are the two hatched placeholders, and they are flat-stepped diagonals standing in for missing images — not decoration. Gradient text and mesh backgrounds are the clearest generated-UI tell there is.",
+      "Don't add scroll-triggered reveals, staggered fade-ins, blur-in text, or a floating gradient orb. Motion here is limited to 150ms colour and shadow transitions on hover, a 2px card rise, and the skip link — and prefers-reduced-motion zeroes all of it.",
+      "Don't introduce emoji, generic icon-library glyphs, or coloured circular icon badges. The two checkmarks on this page are CSS content: '✓' in navy, and that is the whole icon system.",
+      "Don't soften the geometry toward uniform large radii. Radius is a role signal — 40px means \"press this,\" 10px means \"this is a card\" — and flattening them to one friendly value erases the distinction.",
+      "Don't give a second element the hard rgba(0,0,0,.33) 0 4px 4px CTA shadow, or add soft shadows to sections. See The Two Idioms Rule.",
+      "Don't treat the commerce framing as a joke in the visual layer — no comic faces, no oversized badges, no ironic styling. Straighter, never sillier.",
+      "Don't use pure black or pure white as a text colour. Navy is the ink; Paper is the on-dark. The single #000 on this page is the CTA's border.",
+      "Don't add a third navy section to the body flow — see The Navy Punctuation Rule."
+    ],
+    "standingExceptions": [
+      "Inter as the primary face reads as an overused, generated-UI-adjacent default. It is kept because it is the source brand guide's own documented fallback for ABC Social, which is licensed and unavailable. If those faces are ever licensed — or if the page moves to the person's own identity — replace Inter rather than defending it. Do not swap it for another popular grotesque; that trades the justification for nothing.",
+      "The repeating-gradient hatch is a generated-UI signature in general and a deliberate placeholder idiom here. It is correct only while the image slots are genuinely empty. The moment real imagery lands in content.json, .frame--has-image clears the hatch and the exception retires with it."
+    ]
+  }
+}

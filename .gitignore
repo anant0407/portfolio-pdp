@@ -1,7 +1,5 @@
-# AI / design tooling (local only)
-.claude/
-.cursor/
-.impeccable/
+# Impeccable per-session cache (machine-specific paths)
+.impeccable/hook.cache.json
 
 # OS / editor
 .DS_Store

@@ -1,0 +1,50 @@
+{
+  "detector": {
+    "ignoreRules": [],
+    "ignoreFiles": [],
+    "ignoreValues": [
+      {
+        "rule": "clipped-overflow-container",
+        "value": "*",
+        "files": [
+          "index.html"
+        ],
+        "createdAt": "2026-09-13T23:02:00.569Z",
+        "reason": "Verified false positive: body has overflow-x:hidden while html is overflow:visible, so per CSS overflow propagation the value is applied to the viewport and body itself computes to overflow:visible, establishing no clipping context. Sticky nav and skip link both unaffected. Confirmed in /impeccable audit."
+      },
+      {
+        "rule": "cramped-padding",
+        "value": "*",
+        "files": [
+          "index.html"
+        ],
+        "createdAt": "2026-09-13T23:04:39.575Z",
+        "reason": "Verified false positive in /impeccable audit: .sec sets padding-block only but every section's children are wrapped in .shell, which supplies the 24px inline gutter; .modal is padding:0 by design with text in .modal__body at 34px/32px. No text meets a boundary."
+      },
+      {
+        "rule": "design-system-color",
+        "value": "#000",
+        "createdAt": "2026-09-13T23:04:39.680Z",
+        "reason": "Intentional and documented in DESIGN.md Shapes: the primary CTA's 1px pure-black hairline is the signature CTA anatomy inherited from reference/brand-guide.md, and is the only true black on the page."
+      },
+      {
+        "rule": "design-system-color",
+        "value": "rgb(0, 0, 0)",
+        "createdAt": "2026-09-13T23:04:39.784Z",
+        "reason": "Same CTA hairline as #000, reported in computed form. Documented in DESIGN.md Shapes."
+      },
+      {
+        "rule": "design-system-radius",
+        "value": "10px0",
+        "createdAt": "2026-09-13T23:04:39.886Z",
+        "reason": "Detector concatenation of 'border-radius: var(--r-card) var(--r-card) 0 0' on .frame--card. Documented in DESIGN.md Shapes: the project card frame carries the radius on its top two corners only so the image meets the body flush."
+      },
+      {
+        "rule": "overused-font",
+        "value": "inter",
+        "createdAt": "2026-09-14T12:33:10.155Z",
+        "reason": "Sanctioned exception documented in DESIGN.md: reference/brand-guide.md specifies ABC Social / Roc Grotesk / SocialMono, which are licensed and unavailable to this project, and names 'ABC Social', 'Inter', sans-serif as its own fallback stack. Exit condition recorded in DESIGN.md: swap to the licensed faces if they are ever obtained."
+      }
+    ]
+  }
+}
