@@ -1,0 +1,68 @@
+Build a static portfolio site from the attached design. No framework, no build
+step — it deploys to GitHub Pages as-is.
+
+CONCEPT
+An ecommerce product detail page where I am the product. Completely deadpan:
+real PDP conventions, real retail furniture, never winks at itself. The humor
+is that everything is precise, not that anything is silly. If something reads
+as a joke, make it straighter, not sillier.
+
+FILES
+  index.html      semantic, section-commented
+  styles.css      CSS custom properties for all tokens at :root
+  app.js          vanilla, no dependencies
+  content.json    ALL project + review data
+  assets/         images
+
+content.json is load-bearing: projects and reviews are placeholders I will
+swap later, and swapping them must never require touching HTML. app.js
+renders both from the JSON on load.
+
+SECTIONS
+1. Announcement bar
+2. Nav — Work / Reviews / Contact
+3. Buy box — gallery left; right: title, star rating, price, variant selector, trust badges, ADD TO TEAM
+4. Trust bar — ships immediately / 30-day guarantee / no handholding required
+5. Product description
+6. Specs table — skills, tools, stack
+7. How it works — 3 steps, my systems
+8. Recommended products — project grid → quick-look modal
+9. Reviews — rating breakdown bars + individual reviews
+10. FAQ accordion
+11. Footer CTA
+
+BEHAVIOUR
+1. Variant selector — three pills: Creative Strategist / Web Strategist /
+   Both. Selecting one swaps the hero subhead and filters the project grid by
+   tag. "Both" shows everything. Default: Both.
+2. Quick look — clicking a project card opens a modal: image, title,
+   description, tags, close button. Closes on X, on backdrop click, and on
+   Escape. Trap focus while open, restore it on close.
+3. Reviews — rating breakdown bars (5★ to 1★) computed from the review data
+   in content.json, not hardcoded.
+4. FAQ accordion — one open at a time, keyboard accessible.
+5. Add to Team — scrolls to contact. Do not fake a cart.
+
+DESIGN
+Follow the attached design. Where it's ambiguous:
+- Sections alternate backgrounds, never two of the same back-to-back
+- Head block max-width 680px, content max-width 1100px
+- 80px vertical padding, 56px mobile
+- Responsive: buy box two-column desktop, stacked mobile
+- Nothing scrolls horizontally
+
+COPY
+its in @pdp-portfolio-copy-script.md
+
+REFERENCE
+reference/ holds real DTC PDP sections pulled from live stores. Read them
+before building the buy box, trust bar and benefit sections. Match how they
+STRUCTURE things — element order, what sits next to what, how a variant
+picker and a trust row are actually marked up. Do not copy their styling,
+their copy, or their class names. These are the bar, not the source.
+
+QUALITY BAR
+This should look like a real DTC brand shipped it. Not a template, not an AI
+landing page. If a section looks generic, rebuild it.
+
+Build it, then tell me what you'd fix first.

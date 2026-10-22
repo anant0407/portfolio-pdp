@@ -1,0 +1,392 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Junior Strategist — Portfolio</title>
+<meta name="description" content="A product detail page for a junior strategist. Research, experimentation and the build step, in one person.">
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Crect width='32' height='32' fill='%23022044'/%3E%3Ccircle cx='16' cy='16' r='6' fill='%239dc1f3'/%3E%3C/svg%3E">
+
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<!-- Inter as a single variable file across 400–700 rather than four
+     static instances: the brand guide uses 400/500/600/700, so the
+     weights stay and only the payload drops. -->
+<link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@700&family=Inter:wght@400..700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="styles.css">
+</head>
+<body>
+
+<a class="skip-link" href="#buybox">Skip to content</a>
+
+<!-- ============================================================
+     1. ANNOUNCEMENT BAR
+     ============================================================ -->
+<div class="announce">
+  <p class="announce__text" data-announcement></p>
+</div>
+
+<!-- ============================================================
+     2. NAV — sticky, 64px
+     ============================================================ -->
+<header class="nav">
+  <div class="nav__inner shell">
+    <a class="nav__brand" href="#" data-brand></a>
+    <nav class="nav__links" aria-label="Primary">
+      <a href="#work">Work</a>
+      <a href="#reviews">Reviews</a>
+      <a href="#contact">Contact</a>
+      <a class="btn btn--dark btn--sm js-add-to-team" href="#contact">Add to team</a>
+    </nav>
+  </div>
+</header>
+
+<main id="main">
+
+  <!-- ==========================================================
+       3. BUY BOX — breadcrumb, gallery left, purchase column right
+       ========================================================== -->
+  <section class="buy" id="buybox" tabindex="-1">
+    <div class="shell">
+
+      <nav class="crumbs" aria-label="Breadcrumb">
+        <ol>
+          <li><a href="#">Home</a></li>
+          <li><a href="#">People</a></li>
+          <li><span aria-current="page" data-crumb-current></span></li>
+        </ol>
+      </nav>
+
+      <div class="buy__grid">
+
+        <!-- gallery -->
+        <div class="gallery">
+          <ul class="gallery__thumbs" id="thumbs" aria-label="Product images"></ul>
+          <figure class="gallery__main">
+            <div class="frame frame--tall" id="mainFrame"></div>
+            <figcaption class="frame__cap" id="mainCap" aria-live="polite"></figcaption>
+          </figure>
+        </div>
+
+        <!-- purchase column -->
+        <div class="purchase">
+          <p class="eyebrow eyebrow--accent" data-product-role></p>
+          <h1 class="purchase__title" data-product-name></h1>
+          <p class="purchase__subhead" id="subhead"></p>
+
+          <div class="rating">
+            <span class="stars" id="heroStars" aria-hidden="true"></span>
+            <a class="rating__link" href="#reviews" id="heroRating"></a>
+          </div>
+
+          <p class="price">
+            <span class="price__band" data-price-band></span>
+            <span class="price__terms" data-price-terms></span>
+          </p>
+
+          <p class="specline" id="specLine"></p>
+
+          <form class="variants" id="variantForm">
+            <fieldset>
+              <legend class="variants__legend">Role</legend>
+              <div class="variants__pills" id="variantPills"></div>
+            </fieldset>
+          </form>
+
+          <ul class="badges" id="badges"></ul>
+
+          <a class="btn btn--dark btn--block js-add-to-team" href="#contact" data-cta-label></a>
+          <p class="micro" data-cta-micro></p>
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+  <!-- ==========================================================
+       4. TRUST BAR
+       ========================================================== -->
+  <section class="trust">
+    <div class="shell">
+      <ul class="trust__grid" id="trustBar"></ul>
+    </div>
+  </section>
+
+  <!-- ==========================================================
+       5. SKILLS RAIL — horizontal, scrolls past the shell's right
+       edge. The head stays inside .shell; the track carries its own
+       inline padding so the first card lines up with the copy above
+       and the last one can run to the viewport edge.
+       ========================================================== -->
+  <section class="sec sec--dark skills" id="skills">
+    <div class="shell">
+      <div class="head" data-head="skills"></div>
+    </div>
+    <div class="skills__rail" id="skillRail" tabindex="0" role="region" aria-label="Skills and tools, scrolls sideways">
+      <ul class="skills__track" id="skillTrack"></ul>
+    </div>
+  </section>
+
+  <!-- ==========================================================
+       6. HOW IT WORKS — light, so the skills rail above it stays the
+       page's only mid-body navy block
+       ========================================================== -->
+  <section class="sec sec--alt">
+    <div class="shell">
+      <div class="head" data-head="how"></div>
+      <ol class="steps" id="steps"></ol>
+    </div>
+  </section>
+
+  <!-- ==========================================================
+       7. RECOMMENDED PRODUCTS — project grid, quick-look modal
+       ========================================================== -->
+  <section class="sec sec--paper" id="work">
+    <div class="shell">
+      <div class="head" data-head="work"></div>
+      <p class="sr-only" id="gridStatus" role="status"></p>
+      <ul class="grid" id="projectGrid"></ul>
+    </div>
+  </section>
+
+  <!-- ==========================================================
+       8. REVIEWS — breakdown bars + individual reviews
+       ========================================================== -->
+  <section class="sec sec--alt" id="reviews">
+    <div class="shell">
+      <div class="head" data-head="reviews"></div>
+      <div class="reviews">
+        <div class="breakdown">
+          <p class="breakdown__score">
+            <span class="breakdown__num" id="avgNum"></span>
+            <span class="stars" id="avgStars" aria-hidden="true"></span>
+          </p>
+          <p class="breakdown__count" id="avgCount"></p>
+          <ul class="bars" id="bars"></ul>
+        </div>
+        <ul class="reviewlist" id="reviewList"></ul>
+      </div>
+    </div>
+  </section>
+
+  <!-- ==========================================================
+       9. COMPARISON — the retail "compare the range" table. A real
+       <table> with a navy head; the own column is marked by setting
+       its head label in the accent, the same device the specs table
+       used for its "Not included" group. Paper ground, because the
+       reviews above and the FAQ below are both paper-alt.
+       ========================================================== -->
+  <section class="sec sec--paper" id="compare">
+    <div class="shell">
+      <div class="head" data-head="compare"></div>
+      <div class="cmp__scroll">
+        <table class="cmp">
+          <caption class="sr-only" id="cmpCaption"></caption>
+          <thead>
+            <tr id="cmpHead"><th class="cmp__corner" scope="col" id="cmpCorner"></th></tr>
+          </thead>
+          <tbody id="cmpBody"></tbody>
+        </table>
+      </div>
+      <p class="cmp__note" id="cmpNote"></p>
+    </div>
+  </section>
+
+  <!-- ==========================================================
+       10. FAQ ACCORDION — native <details name>, one open at a time
+       ========================================================== -->
+  <section class="sec sec--alt" id="faq">
+    <div class="shell">
+      <div class="head" data-head="faq"></div>
+      <div class="faq" id="faqList"></div>
+    </div>
+  </section>
+
+</main>
+
+<!-- ============================================================
+     11. FOOTER CTA — dark
+     ============================================================ -->
+<section class="sec sec--dark cta" id="contact">
+  <div class="shell">
+    <div class="cta__inner">
+      <div class="cta__media"><span>portrait, closing</span></div>
+      <div class="cta__text">
+        <p class="eyebrow eyebrow--ondark" data-footer-eyebrow></p>
+        <h2 class="cta__h" data-footer-heading></h2>
+        <p class="cta__body" data-footer-body></p>
+        <p class="cta__actions">
+          <a class="btn btn--light" id="mailCta" href="#">Add to team</a>
+        </p>
+        <ul class="cta__links" id="contactLinks"></ul>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ============================================================
+     12. FOOTER BAR
+     ============================================================ -->
+<footer class="foot">
+  <div class="shell foot__inner">
+    <p class="foot__colophon" data-footer-colophon></p>
+    <p class="foot__meta"><span data-footer-sku></span></p>
+  </div>
+</footer>
+
+<!-- ============================================================
+     QUICK-LOOK MODAL — native <dialog>, focus trap + Esc for free
+     ============================================================ -->
+<dialog class="modal" id="quicklook" aria-labelledby="qlTitle">
+  <div class="modal__grid">
+    <div class="modal__media">
+      <div class="frame" id="qlFrame"></div>
+    </div>
+    <div class="modal__body" id="qlBody" tabindex="-1">
+      <button class="modal__close" type="button" id="qlClose" aria-label="Close quick look">&times;</button>
+      <p class="modal__meta"><span id="qlTag"></span><span id="qlFlag"></span></p>
+      <h2 class="modal__title" id="qlTitle"></h2>
+      <p class="modal__blurb" id="qlBlurb"></p>
+      <dl class="modal__spec" id="qlSpec"></dl>
+      <p class="modal__actions"><a class="link-arrow" id="qlCase" href="#">Read the full case</a></p>
+    </div>
+  </div>
+</dialog>
+
+<!-- ============================================================
+     TEMPLATES — every data-driven region renders from content.json
+     ============================================================ -->
+
+<template id="tpl-thumb">
+  <li>
+    <button class="thumb" type="button">
+      <span class="frame frame--thumb"></span>
+      <span class="sr-only"></span>
+    </button>
+  </li>
+</template>
+
+<template id="tpl-variant">
+  <label class="pill">
+    <input class="pill__input" type="radio" name="role">
+    <span class="pill__label"></span>
+  </label>
+</template>
+
+<template id="tpl-badge">
+  <li class="badge"></li>
+</template>
+
+<!-- trust titles are labels, not sections: as <h2> they landed at the
+     same outline level as real section headings and cluttered
+     heading-navigation with four stray phrases -->
+<template id="tpl-trust">
+  <li class="trust__item">
+    <p class="trust__title"></p>
+    <p class="trust__body"></p>
+  </li>
+</template>
+
+<!-- one skill card. The action menu lives inside the card box on
+     purpose: the rail is an overflow-x container, so overflow-y
+     resolves to auto too and anything escaping the card would be
+     clipped rather than float over it. -->
+<template id="tpl-skill">
+  <li class="skill">
+    <article class="skill__card">
+      <div class="skill__media">
+        <span class="frame frame--skill"></span>
+      </div>
+      <div class="skill__body">
+        <p class="skill__cat"></p>
+        <h3 class="skill__title"></h3>
+      </div>
+    </article>
+  </li>
+</template>
+
+<template id="tpl-skill-menu">
+  <div class="skill__actions">
+    <button class="skill__dots" type="button" aria-haspopup="true" aria-expanded="false">
+      <span class="sr-only"></span>
+      <span aria-hidden="true">&hellip;</span>
+    </button>
+    <ul class="skill__menu" hidden></ul>
+  </div>
+</template>
+
+<template id="tpl-skill-menu-item">
+  <li><button class="skill__menu-item" type="button"></button></li>
+</template>
+
+<template id="tpl-step">
+  <li class="step">
+    <p class="step__n"></p>
+    <h3 class="step__title"></h3>
+    <p class="step__body"></p>
+  </li>
+</template>
+
+<template id="tpl-card">
+  <li class="card">
+    <button class="card__btn" type="button">
+      <span class="frame frame--card"></span>
+      <span class="card__body">
+        <span class="card__flag"></span>
+        <span class="card__title"></span>
+        <span class="card__blurb"></span>
+        <span class="card__cue">Quick look &rarr;</span>
+      </span>
+    </button>
+  </li>
+</template>
+
+<template id="tpl-bar">
+  <li class="bar">
+    <span class="bar__label"></span>
+    <span class="bar__track"><span class="bar__fill"></span></span>
+    <span class="bar__n"></span>
+  </li>
+</template>
+
+<template id="tpl-review">
+  <li class="review">
+    <p class="stars stars--sm" aria-hidden="true"></p>
+    <p class="sr-only review__srstars"></p>
+    <h3 class="review__headline"></h3>
+    <p class="review__body"></p>
+    <p class="review__meta">
+      <span class="review__name"></span>
+      <span class="review__who"></span>
+      <span class="review__verified">Verified project</span>
+    </p>
+  </li>
+</template>
+
+<template id="tpl-cmp-col">
+  <th class="cmp__col" scope="col"></th>
+</template>
+
+<template id="tpl-cmp-row">
+  <tr class="cmp__row">
+    <th class="cmp__feature" scope="row"></th>
+  </tr>
+</template>
+
+<template id="tpl-cmp-cell">
+  <td class="cmp__cell">
+    <span class="cmp__mark" aria-hidden="true"></span>
+    <span class="sr-only"></span>
+  </td>
+</template>
+
+<template id="tpl-faq">
+  <details class="qa" name="faq">
+    <summary class="qa__q"><span class="qa__text"></span><span class="qa__ic" aria-hidden="true"></span></summary>
+    <div class="qa__a"><p></p></div>
+  </details>
+</template>
+
+<script src="app.js" defer></script>
+</body>
+</html>

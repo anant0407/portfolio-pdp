@@ -1,0 +1,878 @@
+/* ============================================================
+   TOKENS — Dog is Human brand guide (reference/brand-guide.md)
+   Two documented deviations, both for contrast:
+   - light blue is never a text colour on light grounds
+   - the CTA label is navy, not white (white on #9dc1f3 is ~1.8:1)
+   ============================================================ */
+:root {
+  /* the page is light-only by design; tell the UA so its own
+     surfaces (scrollbars, focus rings, form controls) follow */
+  color-scheme: light;
+
+  /* surfaces */
+  --paper:        #FAFAF8;              /* primary section bg */
+  --paper-alt:    #e4edf9;              /* alternate section bg, alt table rows */
+  --paper-card:   #ffffff;              /* nav, cards, modal panel */
+
+  /* ink — navy anchors authority */
+  --ink:          #022044;
+  --ink-muted:    rgba(2, 32, 68, .75);  /* body text, subheads */
+  --ink-faint:    rgba(2, 32, 68, .70);  /* secondary body, card descriptions */
+
+  /* accent — attention only: fills, borders, active states */
+  --accent:         #9dc1f3;
+  --accent-tint:    rgba(157, 193, 243, .1);
+  --star:           #f59e0b;
+  --yellow:         #eeee4b;
+
+  /* scrim behind the quick-look modal */
+  --scrim:          rgba(2, 32, 68, .55);
+
+  /* on navy */
+  --on-dark:        #FAFAF8;
+  --on-dark-muted:  rgba(250, 250, 248, .78);
+  --on-dark-faint:  rgba(250, 250, 248, .62);
+
+  /* rules */
+  --line:         rgba(2, 32, 68, .12);   /* dividers, table borders */
+  --line-strong:  rgba(2, 32, 68, .20);   /* unselected control borders — never text */
+  --track:        rgba(2, 32, 68, .12);   /* bar track; same value as --line, distinct role */
+  --rule-dark:    rgba(250, 250, 248, .18);
+
+  /* placeholder hatch, kept in palette */
+  --hatch-a:      #dbe6f5;
+  --hatch-b:      #eef4fc;
+  --hatch-dark-a: #06305f;
+  --hatch-dark-b: #042a53;
+
+  /* type — ABC Social / Roc Grotesk / SocialMono are licensed and
+     unavailable; Inter is the guide's own documented fallback */
+  --font-sans:    'Inter', system-ui, -apple-system, sans-serif;
+  --font-display: 'Inter', system-ui, -apple-system, sans-serif;
+  --font-mono:    'IBM Plex Mono', ui-monospace, Menlo, monospace;
+
+  /* layout */
+  --max:       1100px;
+  --max-head:  680px;
+  --max-faq:   760px;
+  --gutter:    24px;
+  --section-y: clamp(56px, 7vw, 80px);
+  --nav-h:     4rem;        /* scales with the reader's font preference */
+  --tap:       2.75rem;     /* 44px minimum touch target */
+
+  /* radii — radius is a role signal, not a style */
+  --r-cta:    40px;
+  --r-card:   10px;
+  --r-panel:  8px;
+  --r-tab:    6px;
+  --r-sm:     4px;
+
+  /* shadows — two idioms, never mixed:
+     press affordance belongs to the CTA alone; object lift to cards */
+  --sh-cta:        rgba(0, 0, 0, .33) 0 4px 4px;
+  --sh-card:       0 2px 8px rgba(0, 0, 0, .08);
+  --sh-card-hover: 0 6px 18px rgba(0, 0, 0, .12);
+}
+
+/* ============================================================
+   RESET / BASE
+   ============================================================ */
+*, *::before, *::after { box-sizing: border-box; }
+
+html { -webkit-text-size-adjust: 100%; }
+
+body {
+  margin: 0;
+  overflow-x: hidden;
+  background: var(--paper);
+  color: var(--ink);
+  font-family: var(--font-sans);
+  font-size: 1rem;
+  line-height: 1.6;
+  -webkit-font-smoothing: antialiased;
+}
+
+h1, h2, h3, p, ul, ol, dl, dd, figure, fieldset, table { margin: 0; padding: 0; }
+/* must beat the display values set on components below */
+[hidden] { display: none !important; }
+ul, ol { list-style: none; }
+fieldset { border: 0; min-width: 0; }
+img { max-width: 100%; display: block; }
+button { font: inherit; color: inherit; background: none; border: 0; }
+
+a { color: var(--ink); text-decoration: none; }
+a:hover { color: var(--ink-muted); }
+
+/* the surfaces we did not draw still belong to the palette.
+   Accent ground with navy ink reads at 8.78:1 on paper and on navy,
+   so one rule covers both section families. */
+::selection { background: var(--accent); color: var(--ink); }
+
+:focus-visible {
+  outline: 2px solid var(--ink);
+  outline-offset: 3px;
+}
+.sec--dark :focus-visible,
+.announce :focus-visible,
+.foot :focus-visible { outline-color: var(--accent); }
+
+.sr-only {
+  position: absolute; width: 1px; height: 1px;
+  padding: 0; margin: -1px; overflow: hidden;
+  clip: rect(0 0 0 0); clip-path: inset(50%); white-space: nowrap;
+}
+
+.skip-link {
+  position: absolute; left: 12px; top: -60px; z-index: 100;
+  padding: 10px 16px; border-radius: var(--r-sm);
+  background: var(--ink); color: var(--on-dark);
+  font-size: 0.8125rem; font-weight: 700;
+  transition: top .15s;
+}
+.skip-link:focus { top: 12px; color: var(--on-dark); }
+
+[id] { scroll-margin-top: calc(var(--nav-h) + 12px); }
+
+.shell {
+  max-width: var(--max);
+  margin: 0 auto;
+  padding-left: var(--gutter);
+  padding-right: var(--gutter);
+}
+
+/* ============================================================
+   SHARED PIECES
+   ============================================================ */
+.eyebrow {
+  font-size: 0.75rem; font-weight: 700;
+  letter-spacing: .1667em; text-transform: uppercase;
+  color: var(--ink);
+}
+.eyebrow--ondark { color: var(--accent); }
+
+/* badge chip above the H1 — their "Best Seller" analogue */
+.eyebrow--accent {
+  display: inline-flex; align-items: center;
+  height: 1.5rem; padding: 0 12px; border-radius: var(--r-sm);
+  background: var(--yellow); color: var(--ink);
+  letter-spacing: .1818em; font-size: 0.6875rem; font-weight: 700;
+  margin-bottom: 18px;
+}
+
+.head { max-width: var(--max-head); margin-bottom: 40px; }
+.head .eyebrow { display: block; margin-bottom: 14px; }
+.head h2 {
+  margin-bottom: 16px;
+  font-family: var(--font-display); font-weight: 700;
+  font-size: clamp(2rem, 4vw, 2.75rem);
+  line-height: 1.15; letter-spacing: -.01em;
+  text-wrap: pretty;
+}
+.head .lead {
+  font-size: 1.0625rem; line-height: 1.6;
+  color: var(--ink-muted); text-wrap: pretty;
+}
+.head .lead:empty { display: none; }
+
+.sec { padding-block: var(--section-y); }
+.sec--paper { background: var(--paper); }
+.sec--alt   { background: var(--paper-alt); }
+.sec--dark  { background: var(--ink); color: var(--on-dark); }
+.sec--dark .head h2 { color: var(--on-dark); }
+.sec--dark .head .lead { color: var(--on-dark-muted); }
+/* the eyebrow is rendered from content.json without a modifier class,
+   so on a navy ground it inherited the navy ink and disappeared.
+   Accent on navy is the same treatment .eyebrow--ondark already uses. */
+.sec--dark .head .eyebrow { color: var(--accent); }
+
+.stars {
+  position: relative; display: inline-block; white-space: nowrap;
+  color: var(--star); font-size: 0.875rem; letter-spacing: .0714em; line-height: 1;
+}
+.stars--sm { font-size: 0.8125rem; }
+/* two stacked rows, the filled one clipped to the exact average */
+.stars__fg { position: absolute; left: 0; top: 0; overflow: hidden; }
+
+/* signature CTA: light blue pill, black hairline, drop shadow */
+.btn {
+  display: inline-flex; align-items: center; justify-content: center;
+  border-radius: var(--r-cta);
+  font-family: var(--font-mono);
+  font-size: 0.9375rem; font-weight: 700;
+  letter-spacing: .0667em; text-transform: uppercase;
+  transition: background-color .15s, color .15s, border-color .15s, box-shadow .15s;
+}
+.btn--dark {
+  height: 3.5rem; padding: 0 28px;
+  background: var(--accent); color: var(--ink);
+  border: 1px solid #000; box-shadow: var(--sh-cta);
+}
+.btn--dark:hover { background: var(--ink); color: var(--on-dark); }
+.btn--sm {
+  height: var(--tap); padding: 0 18px;
+  font-family: var(--font-sans); font-size: 0.875rem;
+  letter-spacing: 0; text-transform: none;
+}
+.btn--block { display: flex; width: 100%; }
+.btn--light {
+  height: 3.375rem; padding: 0 30px;
+  background: var(--accent); color: var(--ink);
+  border: 1px solid #000; box-shadow: var(--sh-cta);
+}
+.btn--light:hover { background: var(--on-dark); color: var(--ink); }
+
+.link-arrow {
+  font-size: 0.8125rem; font-weight: 700;
+  letter-spacing: .0769em; text-transform: uppercase;
+  color: var(--ink);
+  text-decoration: underline; text-underline-offset: 4px;
+}
+
+/* hatched placeholder — used wherever content.json has no image yet */
+.frame {
+  position: relative;
+  background: repeating-linear-gradient(135deg, var(--hatch-a) 0 9px, var(--hatch-b) 9px 18px);
+  border: 1px solid var(--line);
+  border-radius: var(--r-panel);
+  background-size: cover; background-position: center;
+  overflow: hidden;
+}
+.frame--tall { aspect-ratio: 4 / 5; }
+.frame--card {
+  aspect-ratio: 4 / 3; border: 0;
+  border-radius: var(--r-card) var(--r-card) 0 0;
+  display: block;
+}
+.frame--thumb { display: block; width: 100%; height: 100%; border: 0; border-radius: var(--r-tab); }
+.frame--has-image { background: none; }
+.frame__img { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; }
+
+.frame__cap {
+  position: absolute; left: 50%; top: 50%;
+  transform: translate(-50%, -50%);
+  font: 700 0.6875rem var(--font-mono);
+  color: var(--ink-muted);
+  background: var(--paper-card);
+  padding: 6px 10px; border-radius: var(--r-sm);
+  white-space: nowrap; max-width: calc(100% - 24px);
+  overflow: hidden; text-overflow: ellipsis;
+}
+
+/* ============================================================
+   1. ANNOUNCEMENT BAR
+   ============================================================ */
+.announce {
+  display: flex; align-items: center; justify-content: center;
+  min-height: 2.0625rem; padding: 7px var(--gutter);
+  background: var(--ink); color: var(--on-dark);
+}
+.announce__text {
+  font-size: 0.6875rem; font-weight: 700;
+  letter-spacing: .1818em; text-transform: uppercase;
+  text-align: center; line-height: 1.4;
+}
+
+/* ============================================================
+   2. NAV
+   ============================================================ */
+.nav {
+  position: sticky; top: 0; z-index: 30;
+  background: var(--paper-card);
+  border-bottom: 1px solid var(--line);
+}
+.nav__inner {
+  height: var(--nav-h);
+  display: flex; align-items: center; justify-content: space-between; gap: 24px;
+}
+.nav__brand { font-family: var(--font-display); font-size: 1.25rem; font-weight: 700; letter-spacing: -.01em; }
+.nav__links { display: flex; align-items: center; gap: 28px; font-size: 1rem; font-weight: 700; }
+
+/* ============================================================
+   3. BUY BOX
+   ============================================================ */
+.buy { background: var(--paper); padding-bottom: var(--section-y); }
+
+.crumbs { padding-top: 18px; font-size: 0.75rem; color: var(--ink-faint); }
+.crumbs ol { display: flex; flex-wrap: wrap; gap: 8px; }
+.crumbs a { color: var(--ink-faint); }
+/* separators are text, so they get a text colour — --line-strong
+   reads at 1.5:1 and is for borders only */
+.crumbs li + li::before { content: '/'; margin-right: 8px; color: var(--ink-faint); }
+.crumbs [aria-current] { color: var(--ink); font-weight: 600; }
+
+.buy__grid {
+  margin-top: 28px;
+  display: grid; grid-template-columns: 1fr 1fr;
+  gap: clamp(32px, 4vw, 40px); align-items: start;
+}
+
+/* gallery: thumb rail left of the main image */
+.gallery { display: flex; gap: 14px; min-width: 0; }
+.gallery__thumbs { display: flex; flex-direction: column; gap: 10px; flex: none; }
+.gallery__main { flex: 1; min-width: 0; position: relative; }
+
+.thumb {
+  display: block; width: 64px; height: 64px; padding: 0;
+  cursor: pointer; border: 1.5px solid var(--line); border-radius: var(--r-tab);
+  transition: border-color .15s;
+  overflow: hidden;
+}
+.thumb:hover { border-color: var(--line-strong); }
+.thumb[aria-current="true"] { border-color: var(--accent); }
+
+/* purchase column */
+.purchase { min-width: 0; padding-top: 4px; }
+.purchase__title {
+  margin-bottom: 8px;
+  font-family: var(--font-display); font-weight: 700;
+  font-size: clamp(1.875rem, 3.4vw, 2.25rem);
+  line-height: 1.2; letter-spacing: .017em;
+}
+.purchase__subhead {
+  margin-bottom: 18px;
+  font-size: 1.0625rem; line-height: 1.5;
+  color: var(--ink-muted); text-wrap: pretty;
+}
+
+.rating { display: flex; align-items: center; gap: 10px; margin-bottom: 20px; }
+.rating__link {
+  font-size: 0.8125rem; color: var(--ink-muted);
+  text-decoration: underline; text-underline-offset: 3px;
+}
+
+.price { display: flex; align-items: baseline; flex-wrap: wrap; gap: 10px; margin-bottom: 14px; }
+.price__band { font-family: var(--font-mono); font-weight: 700; font-size: 1.125rem; color: var(--ink); }
+.price__terms { font-size: 0.8125rem; color: var(--ink-faint); }
+
+.specline {
+  padding-bottom: 22px;
+  font-size: 0.9375rem; line-height: 1.55; color: var(--ink-muted);
+}
+
+/* variant selector — their subscribe-radio pattern */
+.variants { border-top: 1px solid var(--line); padding-top: 22px; margin-bottom: 22px; }
+.variants__legend {
+  padding: 0; margin-bottom: 12px;
+  font-size: 0.75rem; font-weight: 700;
+  letter-spacing: .1667em; text-transform: uppercase;
+  color: var(--ink);
+}
+.variants__pills { display: grid; grid-template-columns: repeat(auto-fit, minmax(120px, 1fr)); gap: 8px; }
+
+.pill {
+  display: block; cursor: pointer;
+  padding: 13px 14px;
+  border: 1.5px solid var(--line-strong);
+  border-radius: var(--r-panel);
+  background: transparent;
+  transition: border-color .15s, background-color .15s;
+}
+.pill:hover { border-color: var(--accent); }
+.pill__input { position: absolute; opacity: 0; width: 0; height: 0; }
+.pill__label { display: block; font-size: 0.875rem; font-weight: 700; line-height: 1.3; }
+.pill:has(.pill__input:checked) { border: 2px solid var(--accent); background: var(--accent-tint); padding: 12.5px 13.5px; }
+.pill:has(.pill__input:focus-visible) { outline: 2px solid var(--ink); outline-offset: 3px; }
+
+/* trust badges under the selector */
+.badges {
+  display: flex; flex-wrap: wrap; gap: 14px 26px;
+  padding: 16px 0; margin-bottom: 24px;
+  border-top: 1px solid var(--line); border-bottom: 1px solid var(--line);
+}
+.badge {
+  display: flex; align-items: center; gap: 9px;
+  font-size: 0.8125rem; font-weight: 500; color: var(--ink-muted);
+}
+.badge::before {
+  content: '✓'; flex: none;
+  width: 1.25rem; height: 1.25rem; border-radius: 50%;
+  background: var(--paper-alt);
+  display: flex; align-items: center; justify-content: center;
+  font-size: 0.625rem; font-weight: 700; color: var(--ink);
+}
+
+.micro { margin-top: 12px; text-align: center; font-size: 0.75rem; color: var(--ink-faint); }
+
+/* ============================================================
+   4. TRUST BAR
+   ============================================================ */
+.trust {
+  background: var(--paper-alt);
+  padding-block: 30px;
+}
+.trust__grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(230px, 1fr)); gap: 24px 32px; }
+.trust__item { padding-left: 28px; position: relative; }
+.trust__item::before {
+  content: '✓'; position: absolute; left: 0; top: 0;
+  color: var(--ink); font-size: 0.75rem; font-weight: 700;
+}
+.trust__title {
+  font-size: 0.75rem; font-weight: 700;
+  letter-spacing: .1667em; text-transform: uppercase;
+  margin-bottom: 6px;
+}
+.trust__body { font-size: 0.875rem; line-height: 1.55; color: var(--ink-muted); }
+
+/* ============================================================
+   5. SKILLS RAIL — horizontally scrolling cards on a navy ground
+
+   The cards are dark objects, so they need a dark ground to read as
+   objects rather than as a widget dropped onto paper. That makes this
+   the third navy block in the body flow; see the note in DESIGN.md.
+
+   Card width is fixed rather than fluid: at 1100px it shows about 5.5
+   cards and at 375px about 1.7, which is what tells a reader on a
+   phone that the row keeps going.
+   ============================================================ */
+.skills {
+  --skill-w:     11.875rem;             /* 190px, scales with root size */
+  --skill-img-h: 7rem;                  /* fixed, so every card lines up */
+  --skill-face:  rgba(250, 250, 248, .06);   /* card surface, lifted off navy */
+  --skill-face-hover: rgba(250, 250, 248, .09);
+  --skill-veil:  rgba(250, 250, 248, .14);   /* controls sitting over media */
+  --skill-veil-hover: rgba(250, 250, 248, .26);
+}
+
+.skills__rail {
+  overflow-x: auto;
+  overscroll-behavior-x: contain;
+  scroll-snap-type: x proximity;
+  /* snap aligns a card to the scrollport edge, which ignores the
+     track's leading padding and parks the rail past the gutter on
+     load. Matching scroll-padding puts the snap line back on the
+     shell edge, where the heading above it starts. */
+  scroll-padding-inline: max(var(--gutter), (100% - var(--max)) / 2 + var(--gutter));
+  /* room above and below for the 2px lift and its shadow: overflow-x
+     on its own resolves overflow-y to auto, which would clip both */
+  padding-block: 4px 16px;
+  scrollbar-width: thin;
+  scrollbar-color: var(--rule-dark) transparent;
+}
+.skills__rail::-webkit-scrollbar { height: 6px; }
+.skills__rail::-webkit-scrollbar-track { background: transparent; }
+.skills__rail::-webkit-scrollbar-thumb { background: var(--rule-dark); border-radius: var(--r-sm); }
+
+/* max-content so the trailing inline padding survives the overflow;
+   on a block-width track the last card would sit flush to the edge */
+.skills__track {
+  display: flex; gap: 16px; width: max-content;
+  padding-inline: max(var(--gutter), (100% - var(--max)) / 2 + var(--gutter));
+}
+
+.skill { display: flex; }
+.skill--open { position: relative; z-index: 3; }
+
+.skill__card {
+  position: relative;
+  display: flex; flex-direction: column;
+  width: var(--skill-w); flex: none;
+  scroll-snap-align: start;
+  background: var(--skill-face);
+  border: 1px solid var(--rule-dark);
+  border-radius: var(--r-card);
+  box-shadow: var(--sh-card);
+  transition: background-color .15s, border-color .15s, box-shadow .15s, transform .15s;
+}
+.skill__card:hover {
+  background: var(--skill-face-hover);
+  border-color: var(--accent);
+  box-shadow: var(--sh-card-hover);
+  transform: translateY(-2px);
+}
+
+.skill__media {
+  height: var(--skill-img-h); overflow: hidden;
+  border-radius: calc(var(--r-card) - 1px) calc(var(--r-card) - 1px) 0 0;
+}
+.skill__media .frame { display: block; width: 100%; height: 100%; border: 0; border-radius: 0; }
+/* the hatch reads the same two custom properties on every ground, so
+   a dark placeholder is a token swap rather than a second gradient */
+.frame--skill { --hatch-a: var(--hatch-dark-a); --hatch-b: var(--hatch-dark-b); }
+
+.skill__body { display: flex; flex-direction: column; gap: 7px; padding: 14px; flex: 1; }
+.skill__cat {
+  display: flex; align-items: center; gap: 8px;
+  font-size: 0.6875rem; font-weight: 700;
+  letter-spacing: .1818em; text-transform: uppercase;
+  color: var(--on-dark-faint);
+}
+/* the category mark is a fill, not a glyph: no icon set enters here */
+.skill__cat::before {
+  content: ''; flex: none;
+  width: 0.5rem; height: 0.5rem; border-radius: 2px;
+  background: var(--accent);
+}
+.skill__title {
+  font-size: 0.9375rem; font-weight: 700; line-height: 1.35;
+  color: var(--on-dark);
+  /* two lines maximum, and always the height of two, so the titles
+     sit on the same baseline whether they wrap or not */
+  min-height: 2.53125rem;
+  display: -webkit-box; -webkit-line-clamp: 2; -webkit-box-orient: vertical;
+  overflow: hidden;
+}
+
+/* action menu — anchored to the card, drawn over the media */
+.skill__actions { position: absolute; top: 8px; right: 8px; z-index: 2; }
+.skill__dots {
+  position: relative;
+  display: flex; align-items: center; justify-content: center;
+  width: 1.75rem; height: 1.75rem; padding: 0;
+  border-radius: var(--r-sm); cursor: pointer;
+  background: var(--skill-veil); color: var(--on-dark-muted);
+  font-size: 1rem; line-height: 1;
+  transition: background-color .15s, color .15s;
+}
+/* 28px of visual weight, 44px of target — same overlay the modal
+   close uses, and it lands exactly on the card's corner */
+.skill__dots::before {
+  content: ''; position: absolute; left: 50%; top: 50%;
+  width: var(--tap); height: var(--tap);
+  transform: translate(-50%, -50%);
+}
+.skill__dots:hover { background: var(--skill-veil-hover); color: var(--on-dark); }
+
+.skill__menu {
+  position: absolute; top: calc(100% + 6px); right: 0;
+  min-width: 8.5rem; padding: 4px;
+  background: var(--ink);
+  border: 1px solid var(--rule-dark);
+  border-radius: var(--r-panel);
+  box-shadow: var(--sh-card-hover);
+}
+.skill__menu-item {
+  display: flex; align-items: center; width: 100%;
+  min-height: var(--tap); padding: 0 10px;
+  text-align: left; cursor: pointer;
+  border-radius: var(--r-sm);
+  font-size: 0.8125rem; color: var(--on-dark-muted);
+  transition: background-color .15s, color .15s;
+}
+.skill__menu-item:hover { background: var(--skill-veil); color: var(--on-dark); }
+
+/* ============================================================
+   6. HOW IT WORKS
+   ============================================================ */
+.steps { display: grid; grid-template-columns: repeat(auto-fit, minmax(240px, 1fr)); gap: clamp(28px, 4vw, 60px); }
+.step { display: flex; flex-direction: column; gap: 14px; }
+/* the numerals were Attention Blue on navy. On a light ground that is
+   about 1.3:1 and the Fill-Only Rule forbids it as text, so the
+   numeral takes the ink and the hairline takes the light-ground rule
+   rather than the navy-ground one. */
+.step__n {
+  font-family: var(--font-display); font-size: 3rem; font-weight: 700;
+  line-height: 1; letter-spacing: -.02em; color: var(--ink);
+}
+.step__n::after { content: ''; display: block; height: 1px; background: var(--line); margin-top: 14px; }
+.step__title { font-size: 1rem; font-weight: 700; letter-spacing: .0625em; text-transform: uppercase; color: var(--ink); }
+.step__body { font-size: 0.9375rem; line-height: 1.6; color: var(--ink-muted); }
+
+/* ============================================================
+   7. RECOMMENDED PRODUCTS — their UGC card
+   ============================================================ */
+.grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(280px, 1fr)); gap: 24px; }
+.card { display: flex; }
+.card__btn {
+  display: flex; flex-direction: column; width: 100%; text-align: left;
+  cursor: pointer;
+  background: var(--paper-card);
+  border: 0; border-radius: var(--r-card);
+  box-shadow: var(--sh-card);
+  overflow: hidden;
+  transition: box-shadow .15s, transform .15s;
+}
+.card__btn:hover { box-shadow: var(--sh-card-hover); transform: translateY(-2px); }
+.card__body { display: flex; flex-direction: column; gap: 7px; flex: 1; padding: 18px; }
+.card__flag {
+  font-size: 0.6875rem; font-weight: 700;
+  letter-spacing: .1818em; text-transform: uppercase; color: var(--ink-faint);
+}
+.card__flag:empty { display: none; }
+.card__title { font-size: 1rem; font-weight: 700; line-height: 1.35; }
+.card__blurb { font-size: 0.875rem; line-height: 1.5; color: var(--ink-faint); }
+.card__cue {
+  margin-top: auto; padding-top: 14px;
+  font-size: 0.75rem; font-weight: 700;
+  letter-spacing: .0833em; text-transform: uppercase; color: var(--ink);
+}
+
+/* ============================================================
+   8. REVIEWS
+   ============================================================ */
+.reviews {
+  display: grid; grid-template-columns: minmax(240px, 320px) 1fr;
+  gap: clamp(32px, 4vw, 60px); align-items: start;
+}
+.breakdown__score { display: flex; align-items: baseline; gap: 12px; margin-bottom: 6px; }
+.breakdown__num {
+  font-family: var(--font-display); font-weight: 700;
+  font-size: clamp(2.5rem, 5vw, 3.25rem); line-height: 1; letter-spacing: -.02em;
+  font-variant-numeric: tabular-nums;
+}
+.breakdown .stars { font-size: 1rem; }
+.breakdown__count { font-size: 0.8125rem; color: var(--ink-faint); margin-bottom: 22px; }
+
+.bars { display: flex; flex-direction: column; gap: 9px; }
+/* a numeric column: lock the digits to one advance width so the
+   5/4/3/2/1 rail and the counts stay in register */
+.bars { font-variant-numeric: tabular-nums; }
+.bar { display: flex; align-items: center; gap: 12px; }
+.bar__label { width: 2.125rem; font-size: 0.75rem; font-weight: 600; color: var(--ink-muted); flex: none; }
+.bar__track { flex: 1; height: 8px; background: var(--track); border-radius: var(--r-sm); overflow: hidden; }
+.bar__fill { display: block; height: 8px; background: var(--ink); border-radius: var(--r-sm); }
+.bar__n { width: 1.625rem; text-align: right; font-size: 0.75rem; color: var(--ink-muted); flex: none; }
+
+.reviewlist { display: flex; flex-direction: column; gap: 16px; }
+.review {
+  padding: 22px; background: var(--paper-card);
+  border-radius: var(--r-card); box-shadow: var(--sh-card);
+}
+.review .stars { display: block; margin-bottom: 10px; }
+.review__headline { font-size: 1rem; font-weight: 700; margin-bottom: 8px; }
+.review__body { font-size: 0.9375rem; line-height: 1.6; color: var(--ink-muted); margin-bottom: 14px; }
+.review__meta { display: flex; flex-wrap: wrap; gap: 6px 10px; align-items: center; font-size: 0.75rem; color: var(--ink-faint); }
+.review__name { color: var(--ink); font-weight: 700; }
+.review__who:empty { display: none; }
+.review__name + .review__who::before { content: '\00b7'; margin-right: 7px; color: var(--ink-faint); }
+.review__verified { color: var(--ink); font-weight: 600; }
+.review__verified::before { content: '✓ '; }
+
+/* ============================================================
+   9. COMPARISON TABLE
+
+   Retail furniture: a real <table> with a navy head, alternating
+   rows and object lift, built from the same parts as the specs
+   table. The own column is marked by setting its head label in the
+   accent — accent on navy, so the Fill-Only Rule holds. No tinted
+   column: the accent-tint area belongs to the selected variant pill.
+   ============================================================ */
+.cmp__scroll { overflow-x: auto; }
+.cmp {
+  width: 100%;
+  table-layout: fixed;
+  border-collapse: collapse;
+  background: var(--paper-card);
+  border-radius: var(--r-panel);
+  overflow: hidden;              /* clips the navy head's top corners */
+  box-shadow: var(--sh-card);
+}
+.cmp__corner, .cmp__col {
+  background: var(--ink);
+  color: var(--on-dark);
+  padding: 14px 16px;
+  font-size: 0.75rem;
+  font-weight: 700;
+  line-height: 1.4;
+  letter-spacing: .1667em;
+  text-transform: uppercase;
+  text-align: left;
+}
+.cmp__corner { width: 40%; }
+.cmp__col { text-align: center; color: var(--on-dark-muted); }
+.cmp__col--own { color: var(--accent); }
+.cmp__feature {
+  padding: 16px;
+  text-align: left;
+  font-size: 0.9375rem;
+  font-weight: 400;
+  line-height: 1.5;
+  color: var(--ink-muted);
+  text-wrap: pretty;
+}
+.cmp__cell { padding: 16px 8px; text-align: center; }
+.cmp__feature, .cmp__cell { border-bottom: 1px solid var(--line); }
+.cmp__row:last-child .cmp__feature,
+.cmp__row:last-child .cmp__cell { border-bottom: 0; }
+.cmp__row:nth-child(even) th,
+.cmp__row:nth-child(even) td { background: var(--paper-alt); }
+
+/* the whole icon system, still: a navy check and its negative */
+.cmp__mark { font-size: 1.125rem; line-height: 1; }
+.cmp__cell--yes .cmp__mark { color: var(--ink); font-weight: 700; }
+.cmp__cell--no .cmp__mark { color: var(--ink-faint); }
+
+.cmp__note { margin-top: 16px; font-size: 0.8125rem; line-height: 1.6; color: var(--ink-faint); }
+.cmp__note:empty { display: none; }
+
+/* ============================================================
+   10. FAQ
+   ============================================================ */
+.faq { max-width: var(--max-faq); border-top: 1px solid var(--line); }
+.qa { border-bottom: 1px solid var(--line); }
+.qa__q {
+  display: flex; align-items: center; justify-content: space-between; gap: 24px;
+  padding: 20px 0; cursor: pointer;
+  font-size: 1.0625rem; font-weight: 600;
+  list-style: none;
+}
+.qa__q::-webkit-details-marker { display: none; }
+.qa__q:hover { color: var(--ink-muted); }
+.qa__ic { flex: none; font-size: 1.125rem; color: var(--ink-muted); line-height: 1; }
+.qa__ic::before { content: '+'; }
+.qa[open] .qa__ic::before { content: '\2212'; }
+.qa__a { padding: 0 60px 22px 0; }
+.qa__a p { font-size: 0.9375rem; line-height: 1.7; color: var(--ink-muted); text-wrap: pretty; }
+
+/* ============================================================
+   11. FOOTER CTA
+   ============================================================ */
+.cta { padding-block: 0; }
+.cta > .shell { padding-left: 0; padding-right: 0; }
+.cta__inner { display: grid; grid-template-columns: 1fr 1fr; align-items: stretch; }
+.cta__media {
+  min-height: 340px;
+  background: repeating-linear-gradient(135deg, var(--hatch-dark-a) 0 9px, var(--hatch-dark-b) 9px 18px);
+  display: flex; align-items: center; justify-content: center;
+}
+.cta__media span {
+  font: 700 0.6875rem var(--font-mono); color: var(--on-dark-faint);
+  border: 1px solid var(--rule-dark); border-radius: var(--r-sm); padding: 6px 10px;
+}
+.cta__text {
+  display: flex; flex-direction: column; justify-content: center;
+  padding: clamp(48px, 6vw, 72px) var(--gutter) clamp(48px, 6vw, 72px) clamp(28px, 4vw, 56px);
+}
+.cta__text .eyebrow { display: block; margin-bottom: 14px; }
+.cta__h {
+  margin-bottom: 16px;
+  font-family: var(--font-display); font-weight: 700;
+  font-size: clamp(2rem, 4vw, 2.75rem); line-height: 1.15; letter-spacing: -.01em;
+  color: var(--on-dark);
+}
+.cta__body { margin-bottom: 26px; font-size: 1.0625rem; line-height: 1.6; color: var(--on-dark-muted); max-width: 460px; }
+.cta__actions { margin-bottom: 24px; }
+.cta__links { display: flex; flex-wrap: wrap; gap: 8px 18px; font-size: 0.8125rem; }
+.cta__links a { color: var(--on-dark-muted); text-decoration: underline; text-underline-offset: 3px; }
+.cta__links a:hover { color: var(--on-dark); }
+
+/* ============================================================
+   12. FOOTER BAR — continuous with the navy CTA above it
+   ============================================================ */
+.foot { background: var(--ink); color: var(--on-dark-faint); border-top: 1px solid var(--rule-dark); }
+.foot__inner {
+  padding-block: 24px;
+  display: flex; flex-wrap: wrap; gap: 10px 24px;
+  justify-content: space-between; align-items: baseline;
+  font-size: 0.75rem;
+}
+
+/* ============================================================
+   QUICK-LOOK MODAL — their formulation detail panel
+   ============================================================ */
+.modal {
+  width: 920px; max-width: calc(100vw - 32px); max-height: 88vh;
+  padding: 0; border: 1px solid var(--line);
+  border-radius: var(--r-panel);
+  background: var(--paper-card); color: var(--ink);
+  overflow: auto;
+  scrollbar-width: thin;
+  scrollbar-color: var(--line-strong) transparent;
+}
+.modal::backdrop { background: var(--scrim); backdrop-filter: blur(3px); }
+.modal__grid { display: grid; grid-template-columns: 1fr 1fr; min-height: 100%; }
+.modal__media { position: relative; min-height: 300px; }
+.modal__media .frame { position: absolute; inset: 0; border: 0; border-radius: 0; }
+.modal__body { padding: 34px 32px; position: relative; }
+/* 32px circle, 44px target: the hit area is an invisible overlay so
+   the visual weight stays small without shrinking the tap */
+.modal__close {
+  position: absolute; right: 14px; top: 10px;
+  width: 2rem; height: 2rem; cursor: pointer; border-radius: 50%;
+  font-size: 1.375rem; line-height: 1; color: var(--ink-muted);
+  transition: background-color .15s, color .15s;
+}
+.modal__close::before {
+  content: ''; position: absolute; left: 50%; top: 50%;
+  width: var(--tap); height: var(--tap);
+  transform: translate(-50%, -50%);
+}
+.modal__close:hover { background: var(--paper-alt); color: var(--ink); }
+.modal__meta {
+  /* clears the close button's 44px hit area, not just its 32px circle */
+  display: flex; flex-wrap: wrap; gap: 10px; margin-bottom: 10px; padding-right: 3.25rem;
+  font-size: 0.6875rem; font-weight: 700; letter-spacing: .1818em; text-transform: uppercase;
+  color: var(--ink-muted);
+}
+.modal__meta span:empty { display: none; }
+.modal__title {
+  margin-bottom: 12px;
+  font-family: var(--font-display); font-weight: 700;
+  font-size: 1.625rem; line-height: 1.2; letter-spacing: -.01em;
+}
+.modal__blurb { font-size: 0.9375rem; line-height: 1.6; color: var(--ink-muted); margin-bottom: 20px; }
+.modal__spec { border-top: 1px solid var(--line); }
+.modal__spec dt {
+  padding-top: 16px;
+  font-size: 0.6875rem; font-weight: 700;
+  letter-spacing: .1818em; text-transform: uppercase; color: var(--ink-faint);
+}
+.modal__spec dd { padding: 5px 0 16px; font-size: 0.9375rem; line-height: 1.6; color: var(--ink-muted); border-bottom: 1px solid var(--line); }
+.modal__actions { margin-top: 20px; }
+
+/* load failure notice */
+.loadfail { max-width: 620px; margin: 80px auto; padding: 0 var(--gutter); }
+.loadfail h1 { font-weight: 700; font-size: 1.75rem; margin-bottom: 12px; }
+.loadfail p { font-size: 1rem; line-height: 1.6; color: var(--ink-muted); margin-bottom: 12px; }
+.loadfail code { font: 700 0.8125rem var(--font-mono); background: var(--paper-alt); padding: 2px 6px; border-radius: var(--r-sm); }
+
+/* ============================================================
+   RESPONSIVE
+   ============================================================ */
+@media (max-width: 900px) {
+  .buy__grid { grid-template-columns: 1fr; }
+  .reviews { grid-template-columns: 1fr; }
+  .cta__inner { grid-template-columns: 1fr; }
+  .cta__media { min-height: 240px; order: -1; }
+  .cta__text { padding-left: var(--gutter); }
+  .modal__grid { grid-template-columns: 1fr; }
+  .modal__media { min-height: 220px; }
+
+  /* main image above a horizontal thumb strip */
+  .gallery { flex-direction: column-reverse; }
+  .gallery__thumbs { flex-direction: row; flex-wrap: nowrap; }
+  .gallery__thumbs li { flex: 1 1 0; min-width: 0; }
+  .thumb { width: 100%; height: auto; aspect-ratio: 1 / 1; }
+}
+
+@media (max-width: 640px) {
+  .nav__links { gap: 18px; }
+  .nav__links a:not(.btn) { display: none; }
+
+
+  /* the table stays a table; only the value columns give up width,
+     which keeps three columns and a readable label inside 375px */
+  .cmp { table-layout: auto; }
+  .cmp__corner, .cmp__col { padding: 12px 8px; font-size: 0.6875rem; letter-spacing: .05em; }
+  .cmp__feature { padding: 12px 8px 12px 12px; font-size: 0.875rem; }
+  .cmp__cell { width: 3rem; padding: 12px 4px; }
+
+  .qa__a { padding-right: 0; }
+  .modal__body { padding: 28px 20px; }
+}
+
+/* ============================================================
+   REDUCED MOTION
+
+   Targeted, not blanket. Of the six transitions on this page four
+   are colour, border or shadow — those are state feedback, not
+   motion, and removing them would take away the only signal that a
+   control responded. What actually moves is the card's 2px rise and
+   the skip link dropping in; both go. The page-level smooth scroll
+   is triggered from JavaScript, which reads this same preference
+   directly (see app.js) — `scroll-behavior` below cannot reach it.
+   ============================================================ */
+@media (prefers-reduced-motion: reduce) {
+  html { scroll-behavior: auto; }
+
+  .skip-link { transition: none; }
+
+  .card__btn { transition: box-shadow .15s; }
+  .card__btn:hover { transform: none; }
+
+  /* same reasoning for the skill cards: the colour and shadow change
+     is state feedback and stays, the 2px rise goes */
+  .skill__card { transition: background-color .15s, border-color .15s, box-shadow .15s; }
+  .skill__card:hover { transform: none; }
+
+  .skills__rail { scroll-behavior: auto; }
+}

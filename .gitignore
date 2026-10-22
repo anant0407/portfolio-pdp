@@ -1,0 +1,10 @@
+# AI / design tooling (local only)
+.claude/
+.cursor/
+.impeccable/
+
+# OS / editor
+.DS_Store
+Thumbs.db
+desktop.ini
+.vscode/

@@ -1,0 +1,406 @@
+{
+  "meta": {
+    "name": "Anant Sharma",
+    "role": "Junior Strategist",
+    "sku": "CS-01"
+  },
+
+  "availability": {
+    "date": "Immediately",
+    "location": "Remote"
+  },
+
+  "salary": {
+    "band": "$TBA",
+    "terms": "Full time · Junior"
+  },
+
+  "announcement": {
+    "text": "Available immediately. One role at a time."
+  },
+
+  "nav": {
+    "links": [
+      { "label": "Work", "href": "#work" },
+      { "label": "Reviews", "href": "#reviews" },
+      { "label": "Contact", "href": "#contact" }
+    ]
+  },
+
+  "gallery": [
+    { "image": "", "alt": "This site with its analytics panel open", "caption": "Ships instrumented." },
+    { "image": "", "alt": "A ranked test roadmap with the ranking method visible", "caption": "Prioritisation method, written down." },
+    { "image": "", "alt": "A one-page brief", "caption": "One page. This is the deliverable." },
+    { "image": "", "alt": "A results readout showing a loss", "caption": "Test 04. Did not win." },
+    { "image": "", "alt": "Four rejected territories, struck through", "caption": "What didn't make it, and why." }
+  ],
+
+  "variants": [
+    {
+      "id": "creative",
+      "label": "Creative Strategist",
+      "specLine": "Looking at problems from different angles and seeing what comes out of it."
+    },
+    {
+      "id": "web",
+      "label": "Web Strategist",
+      "specLine": "Trying to make websites make sense."
+    },
+    {
+      "id": "others",
+      "label": "Others",
+      "specLine": "Meta Ads, cold-traffic advertorials, design Klaviyo email flows, and/or build custom tools to move faster across all of it."
+    }
+  ],
+
+  "badges": [
+    "Ships immediately",
+    "30-day guarantee",
+    "No handholding required"
+  ],
+
+  "cta": {
+    "label": "Add to team",
+    "micro": "Opens an email. No form."
+  },
+
+  "trustBar": [
+    {
+      "title": "Ships immediately",
+      "body": "Available [FILL: date]"
+    },
+    {
+      "title": "30-day guarantee"
+    },
+    {
+      "title": "No handholding required"
+    }
+  ],
+
+  "skills": [
+    {
+      "id": "conversion-research",
+      "category": "Research",
+      "title": "Conversion research",
+      "image": "",
+      "alt": "Session replay with a drop-off marked",
+      "caption": "replay, step two",
+      "menu": ["Edit", "Duplicate", "Delete"]
+    },
+    {
+      "id": "experiment-design",
+      "category": "Experimentation",
+      "title": "Experiment design",
+      "image": "",
+      "alt": "A sample size and duration sheet",
+      "caption": "sample size sheet",
+      "menu": ["Edit", "Duplicate", "Delete"]
+    },
+    {
+      "id": "shopify-cro",
+      "category": "Commerce",
+      "title": "Shopify CRO",
+      "image": "",
+      "alt": "A cart drawer mid-edit",
+      "caption": "cart drawer",
+      "menu": ["Edit", "Duplicate", "Delete"]
+    },
+    {
+      "id": "creative-testing",
+      "category": "Creative",
+      "title": "Creative testing and UGC",
+      "image": "",
+      "alt": "A board of ad variants",
+      "caption": "variant board",
+      "menu": ["Edit", "Duplicate", "Delete"]
+    },
+    {
+      "id": "meta-ads",
+      "category": "Paid",
+      "title": "Meta Ads",
+      "image": "",
+      "alt": "Ads manager filtered to one campaign",
+      "caption": "ads manager",
+      "menu": ["Edit", "Duplicate", "Delete"]
+    },
+    {
+      "id": "klaviyo-flows",
+      "category": "Lifecycle",
+      "title": "Klaviyo email flows",
+      "image": "",
+      "alt": "A flow builder canvas",
+      "caption": "flow builder",
+      "menu": ["Edit", "Duplicate", "Delete"]
+    },
+    {
+      "id": "front-end-build",
+      "category": "Build",
+      "title": "Front-end build",
+      "image": "",
+      "alt": "A diff of the variant that shipped",
+      "caption": "variant diff",
+      "menu": ["Edit", "Duplicate", "Delete"]
+    },
+    {
+      "id": "instrumentation",
+      "category": "Measurement",
+      "title": "Analytics instrumentation",
+      "image": "",
+      "alt": "An event map before tagging",
+      "caption": "event map",
+      "menu": ["Edit", "Duplicate", "Delete"]
+    }
+  ],
+
+  "sections": {
+    "skills": {
+      "eyebrow": "In the box",
+      "heading": "What comes with it",
+      "lead": "Eight things I would use unsupervised in week one. The row scrolls sideways."
+    },
+    "how": {
+      "eyebrow": "How it works",
+      "heading": "Three steps, and the rule that ends each one",
+      "lead": "The same order every time, whether the site gets a thousand sessions a month or a million."
+    },
+    "work": {
+      "eyebrow": "Recommended products",
+      "heading": "Recently shipped",
+      "lead": "Six projects, all self-initiated. The grid filters to whichever role is selected above."
+    },
+    "reviews": {
+      "heading": "Reviews"
+    },
+    "compare": {
+      "eyebrow": "Compare",
+      "heading": "Against the other two ways to fill this",
+      "lead": "Roughly the same monthly cost, spent three ways. The rows are the parts of the job that usually go missing."
+    },
+    "faq": {
+      "eyebrow": "Questions",
+      "heading": "Before you add to team",
+      "lead": ""
+    }
+  },
+
+  "steps": [
+    {
+      "n": "01",
+      "title": "Read the page",
+      "body": "Analytics, session recordings, support tickets, and whatever sales gets asked twice a week. Most of what you need is usually already inside the company before anyone runs anything."
+    },
+    {
+      "n": "02",
+      "title": "Write it down before running it",
+      "body": "Hypothesis, metric, sample size, duration, stopping rule. All of it agreed before the variant gets built, so that when the result comes in there is nothing left to argue about except what to do next."
+    },
+    {
+      "n": "03",
+      "title": "Turn the result into a brief",
+      "body": "Most tests lose. Kohavi's published base rate is roughly one in three ideas improving its target metric. So the write-up matters more than the result: a loss you can explain still changes what gets built next, and plenty of wins can't be explained at all."
+    }
+  ],
+
+  "projects": [
+    {
+      "id": "checkout-teardown",
+      "title": "Checkout teardown: [regional trade supplier]",
+      "blurb": "Three-step checkout, 61% drop at step two. Ranked six fixes, built the top one, measured it.",
+      "tag": "web",
+      "image": "",
+      "alt": "Checkout teardown project",
+      "caption": "checkout, step two",
+      "placeholder": true,
+      "caseUrl": "",
+      "modal": {
+        "situation": "[PLACEHOLDER: 2 sentences. Traffic, baseline, what was at stake.]",
+        "found": "[PLACEHOLDER: 2 sentences. The research input, not the conclusion.]",
+        "hypothesis": "[PLACEHOLDER: one sentence, falsifiable.]",
+        "result": "[PLACEHOLDER: result with sample size, duration, effect size. Or why it couldn't reach significance, and what I did instead.]",
+        "changed": "[PLACEHOLDER: one sentence.]"
+      }
+    },
+    {
+      "id": "test-04",
+      "title": "Test 04: the one that lost",
+      "blurb": "Hypothesis was reasonable. Result was flat, then negative on the secondary metric. What I'd do differently.",
+      "tag": "web",
+      "image": "",
+      "alt": "Test 04 results readout",
+      "caption": "results readout",
+      "placeholder": true,
+      "caseUrl": "",
+      "modal": {
+        "situation": "[PLACEHOLDER: 2 sentences. Traffic, baseline, what was at stake.]",
+        "found": "[PLACEHOLDER: 2 sentences. The research input, not the conclusion.]",
+        "hypothesis": "[PLACEHOLDER: one sentence, falsifiable.]",
+        "result": "[PLACEHOLDER: result with sample size, duration, effect size. Or why it couldn't reach significance, and what I did instead.]",
+        "changed": "[PLACEHOLDER: one sentence.]"
+      }
+    },
+    {
+      "id": "brief-cleaning",
+      "title": "Brief: [industrial cleaning supplier]",
+      "blurb": "Four territories. Three rejected, with reasons. One brief, one page.",
+      "tag": "creative",
+      "image": "",
+      "alt": "One-page brief with rejected territories",
+      "caption": "brief, one page",
+      "placeholder": true,
+      "caseUrl": "",
+      "modal": {
+        "situation": "[PLACEHOLDER: 2 sentences. Traffic, baseline, what was at stake.]",
+        "found": "[PLACEHOLDER: 2 sentences. The research input, not the conclusion.]",
+        "hypothesis": "[PLACEHOLDER: one sentence, falsifiable.]",
+        "result": "[PLACEHOLDER: result with sample size, duration, effect size. Or why it couldn't reach significance, and what I did instead.]",
+        "changed": "[PLACEHOLDER: one sentence.]"
+      }
+    },
+    {
+      "id": "interview-broke-hypothesis",
+      "title": "The interview that broke the hypothesis",
+      "blurb": "Six conversations with [category] buyers. The thing I was sure of turned out to be the opposite.",
+      "tag": "creative",
+      "image": "",
+      "alt": "Interview notes and transcript coding",
+      "caption": "interview notes",
+      "placeholder": true,
+      "caseUrl": "",
+      "modal": {
+        "situation": "[PLACEHOLDER: 2 sentences. Traffic, baseline, what was at stake.]",
+        "found": "[PLACEHOLDER: 2 sentences. The research input, not the conclusion.]",
+        "hypothesis": "[PLACEHOLDER: one sentence, falsifiable.]",
+        "result": "[PLACEHOLDER: result with sample size, duration, effect size. Or why it couldn't reach significance, and what I did instead.]",
+        "changed": "[PLACEHOLDER: one sentence.]"
+      }
+    },
+    {
+      "id": "local-rebuild",
+      "title": "Rebuilding [local business] site, end to end",
+      "blurb": "Research, brief, build, instrumentation, one decision made from its own data eight weeks later.",
+      "tag": "both",
+      "image": "",
+      "alt": "Rebuilt site, before and after",
+      "caption": "site rebuild",
+      "placeholder": true,
+      "caseUrl": "",
+      "modal": {
+        "situation": "[PLACEHOLDER: 2 sentences. Traffic, baseline, what was at stake.]",
+        "found": "[PLACEHOLDER: 2 sentences. The research input, not the conclusion.]",
+        "hypothesis": "[PLACEHOLDER: one sentence, falsifiable.]",
+        "result": "[PLACEHOLDER: result with sample size, duration, effect size. Or why it couldn't reach significance, and what I did instead.]",
+        "changed": "[PLACEHOLDER: one sentence.]"
+      }
+    },
+    {
+      "id": "this-page",
+      "title": "This page",
+      "blurb": "Live analytics. One question I had about it, the change I made, and what happened.",
+      "tag": "both",
+      "image": "",
+      "alt": "This page with its analytics panel open",
+      "caption": "this page, instrumented",
+      "placeholder": true,
+      "caseUrl": "",
+      "modal": {
+        "situation": "[PLACEHOLDER: 2 sentences. Traffic, baseline, what was at stake.]",
+        "found": "[PLACEHOLDER: 2 sentences. The research input, not the conclusion.]",
+        "hypothesis": "[PLACEHOLDER: one sentence, falsifiable.]",
+        "result": "[PLACEHOLDER: result with sample size, duration, effect size. Or why it couldn't reach significance, and what I did instead.]",
+        "changed": "[PLACEHOLDER: one sentence.]"
+      }
+    }
+  ],
+
+  "reviews": [
+    {
+      "stars": 5,
+      "headline": "Did the work before anyone asked him to",
+      "name": "[PLACEHOLDER: name]",
+      "role": "owner",
+      "company": "[local business]",
+      "context": "Worked together on the site rebuild",
+      "body": "Honestly I wasn't expecting much, we'd had two agencies in before this and both of them came back with a rebrand proposal. He turned up having already gone through the site himself and had a list of about six things, ranked, with rough numbers next to them. First one on the list was that the contact form didn't work on mobile. We'd had it like that for I don't know how long and nobody had mentioned it.",
+      "verified": true,
+      "placeholder": true
+    },
+    {
+      "stars": 4,
+      "headline": "Strong thinking, slow to stop researching",
+      "name": "[PLACEHOLDER: name]",
+      "role": "[role]",
+      "company": "[company]",
+      "context": "[project]",
+      "body": "The research was the strongest part, better than I'd expect from someone at this stage, and the brief actually was one page, which in my experience almost nobody manages. If I had a criticism it's that he wanted to keep interviewing after we already had enough to make the decision on. I think we had that conversation more than once. Not a dealbreaker, just something to know going in.",
+      "verified": true,
+      "placeholder": true
+    }
+  ],
+
+  "compare": {
+    "caption": "Why would you love this hire?",
+    "featureLabel": "What you get",
+    "columns": [
+      { "label": "This hire", "own": true },
+      { "label": "Someone else" }
+    ],
+    "rows": [
+      { "feature": "AI-First Approach", "values": ["yes", "no"] },
+      { "feature": "Research, testing and the build in one person", "values": ["yes", "no"] },
+      { "feature": "Has a CS background which helps with analytics and web dev knowledge", "values": ["yes", "no"] },
+      { "feature": "Great at figuring things out on their own", "values": ["yes", "no"] },
+      { "feature": "Dedicated to being better every single day", "values": ["yes", "no"] },
+      { "feature": "You should work with him ASAP", "values": ["yes", "no"] }
+
+    ]
+  },
+
+  "faq": [
+    {
+      "question": "Have you done this for a real client?",
+      "answer": "No. Everything on this page is self-initiated and labelled that way on every case. What I'd point you at instead is the reasoning: each project shows the territories I rejected and why, what the research came back with, and where a hypothesis broke. You can tell more about someone's judgement from the work they threw out than from the work that survived, and that is usually the part a spec portfolio leaves out."
+    },
+    {
+      "question": "You're applying for two different jobs.",
+      "answer": "At a company with no dedicated experimentation owner, which by Speero's benchmark is roughly 40% of brands, these are one job: somebody still has to decide what to test and what the result means for the creative. At a large agency with a planning department and a separate CRO function they're two jobs, and I'd apply for one of them. If you're the second kind of employer, the link you were sent only shows the relevant role."
+    },
+    {
+      "question": "How many tests have you actually run?",
+      "answer": "Not many. I'd be suspicious of a junior who said otherwise, and so should you be. Published base rates put experiment success at around one in three, dropping to 10% to 20% in domains that have already been optimised hard, so a junior showing five wins and no losses is either working from a very small sample or has picked what to show you. There's an access problem underneath that as well: Google sunset Optimize in September 2023, and with it went the free way of accumulating real tests without already having the job that hands you the traffic. What does transfer is how I prioritise, how I decide a test is finished, what I do with a site that will never reach significance, and one test I got wrong. All of that is on this page."
+    },
+    {
+      "question": "What's your stopping rule?",
+      "answer": "Sample size and duration are set before the variant is built, worked out from the baseline conversion rate and the smallest effect that would be worth acting on. Minimum one full business cycle, usually two weeks, so weekday and weekend traffic are both represented. No peeking at partial results to decide whether to keep going. And if the test reaches its duration without reaching the planned sample, it gets recorded as inconclusive and stays that way, instead of running on until the numbers happen to look like something."
+    },
+    {
+      "question": "How do you prioritise?",
+      "answer": "[FILL: your actual framework in three sentences. Name it, say what you score on, and say what you do when a stakeholder wants a test that scores badly. The last part is the one you'll be asked about.]"
+    },
+    {
+      "question": "What if the site doesn't have enough traffic to test?",
+      "answer": "Most don't. Running a smaller version of the same test doesn't fix that, so the method has to change: session replay, support-ticket themes, five user interviews, sitting in on sales calls, a painted-door test on one element. What that gives you is direction, which is a weaker claim than significance, and the job is then to say which of the two you're holding. Reporting a 15% lift off 40 conversions is how people get caught."
+    },
+    {
+      "question": "What does the 30-day guarantee mean?",
+      "answer": "A prioritised test roadmap in week one, with the ranking method written down so you can argue with it. A stopping rule applied to whatever is already running, including a call on anything that should be stopped now. A research pass that doesn't depend on having traffic. One experiment designed, built, shipped and analysed end to end. And one written brief saying what the result means for what gets made next."
+    },
+    {
+      "question": "Returns?",
+      "answer": "Test 04 lost. It's the second card in the grid, with the original hypothesis, the result, and what I'd do differently."
+    }
+  ],
+
+  "footer": {
+    "eyebrow": "In stock",
+    "heading": "Add to team",
+    "body": "Available [FILL: date]. Remote or [FILL: city]. One role at a time.",
+    "colophon": "Built by the product. Analytics running. Source on GitHub."
+  },
+
+  "contact": {
+    "email": "[FILL: email]",
+    "linkedin": "",
+    "github": "",
+    "repo": ""
+  }
+}

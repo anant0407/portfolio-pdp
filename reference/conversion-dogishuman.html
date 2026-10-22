@@ -1,0 +1,191 @@
+<style>
+  #dh-hero-1 { background: #FAFAF8; padding: 40px 0; font-family: 'ABC Social', 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif; }
+  #dh-hero-1 .dh-hero-grid { max-width: 1440px; margin: 0 auto; padding: 0 40px; display: grid; grid-template-columns: 1fr 1fr; gap: 40px; align-items: start; }
+  @media(max-width: 768px){ #dh-hero-1 .dh-hero-grid { grid-template-columns: 1fr; } }
+  #dh-hero-1 .dh-hero-gallery { display: flex; gap: 12px; }
+  #dh-hero-1 .dh-hero-thumbs { display: flex; flex-direction: column; gap: 8px; flex-shrink: 0; }
+  #dh-hero-1 .dh-hero-thumbs button { width: 64px; height: 64px; padding: 0; border: 2px solid transparent; border-radius: 6px; overflow: hidden; cursor: pointer; background: transparent; }
+  #dh-hero-1 .dh-hero-thumbs button.active { border-color: #9dc1f3; }
+  #dh-hero-1 .dh-hero-thumbs img { width: 100%; height: 100%; object-fit: cover; display: block; }
+  #dh-hero-1 .dh-hero-main { flex: 1; position: relative; border-radius: 12px; overflow: hidden; background: #f0f0f0; min-height: 520px; }
+  #dh-hero-1 .dh-hero-main img { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; }
+  #dh-hero-1 .dh-hero-ticker { position: absolute; top: 16px; left: 0; right: 0; z-index: 2; background: #022044; color: #fff; padding: 4px 0; font-size: 11px; font-weight: 700; letter-spacing: 2px; text-transform: uppercase; text-align: center; }
+  #dh-hero-1 .dh-hero-info { color: #022044; }
+  #dh-hero-1 .dh-hero-badge { display: inline-block; background: #022044; color: #fff; font-size: 11px; font-weight: 700; letter-spacing: 2px; text-transform: uppercase; padding: 4px 12px; border-radius: 3px; margin-bottom: 12px; }
+  #dh-hero-1 .dh-hero-eyebrow { font-size: 12px; font-weight: 700; letter-spacing: 2px; color: #9dc1f3; text-transform: uppercase; margin: 0 0 8px; }
+  #dh-hero-1 h1 { font-size: 36px; font-weight: 700; color: #022044; line-height: 1.2; letter-spacing: 0.6px; margin: 0 0 4px; }
+  #dh-hero-1 .dh-hero-subtitle { font-size: 22px; font-weight: 400; margin: 0 0 12px; }
+  #dh-hero-1 .dh-hero-rating { display: flex; align-items: center; gap: 8px; margin-bottom: 16px; }
+  #dh-hero-1 .dh-hero-stars { color: #f59e0b; font-size: 16px; letter-spacing: 2px; }
+  #dh-hero-1 .dh-hero-rcount { font-size: 14px; color: rgba(2,32,68,0.7); }
+  #dh-hero-1 .dh-hero-desc { font-size: 15px; color: rgba(2,32,68,0.8); line-height: 1.6; margin: 0 0 16px; }
+  #dh-hero-1 ul.dh-hero-pills { list-style: none; padding: 0; margin: 0 0 24px; display: flex; flex-direction: column; gap: 6px; }
+  #dh-hero-1 ul.dh-hero-pills li { font-size: 13px; display: flex; align-items: center; gap: 8px; }
+  #dh-hero-1 ul.dh-hero-pills li::before { content: '✓'; color: #9dc1f3; font-weight: 700; }
+  #dh-hero-1 .dh-hero-section-label { font-size: 13px; font-weight: 700; margin: 0 0 8px; }
+  #dh-hero-1 .dh-hero-flavors { display: flex; gap: 8px; margin-bottom: 20px; }
+  #dh-hero-1 .dh-hero-flavor { padding: 8px 20px; border-radius: 6px; border: 1.5px solid #022044; background: transparent; color: #022044; font-size: 14px; font-weight: 600; cursor: pointer; text-transform: capitalize; }
+  #dh-hero-1 .dh-hero-flavor.active { background: #022044; color: #fff; }
+  #dh-hero-1 .dh-hero-buy-options { display: flex; flex-direction: column; gap: 8px; margin-bottom: 20px; }
+  #dh-hero-1 .dh-hero-option { display: block; border: 1.5px solid rgba(2,32,68,0.2); border-radius: 8px; padding: 14px 16px; cursor: pointer; }
+  #dh-hero-1 .dh-hero-option.active { border: 2px solid #9dc1f3; background: rgba(157,193,243,0.1); }
+  #dh-hero-1 .dh-hero-option-row { display: flex; justify-content: space-between; align-items: center; gap: 10px; }
+  #dh-hero-1 .dh-hero-option-radio { width: 16px; height: 16px; accent-color: #9dc1f3; }
+  #dh-hero-1 .dh-hero-option-name { font-weight: 700; font-size: 14px; }
+  #dh-hero-1 .dh-hero-price-pill { font-family: monospace; font-weight: 700; font-size: 15px; color: #fff; background: #022044; padding: 2px 10px; border-radius: 4px; letter-spacing: 1px; }
+  #dh-hero-1 .dh-hero-price-plain { font-family: monospace; font-weight: 700; font-size: 15px; letter-spacing: 1px; }
+  #dh-hero-1 .dh-hero-delivery { width: 100%; padding: 6px 10px; border: 1px solid rgba(2,32,68,0.3); border-radius: 4px; font-size: 13px; color: #022044; background: #fff; margin: 10px 0 8px; }
+  #dh-hero-1 .dh-hero-fine { font-size: 12px; margin: 4px 0; }
+  #dh-hero-1 .dh-hero-fine.accent { color: #9dc1f3; font-weight: 600; }
+  #dh-hero-1 .dh-hero-qty { display: flex; align-items: center; margin-bottom: 16px; border: 1.5px solid rgba(2,32,68,0.2); border-radius: 8px; width: fit-content; }
+  #dh-hero-1 .dh-hero-qty button { width: 40px; height: 44px; border: 0; background: transparent; font-size: 20px; cursor: pointer; }
+  #dh-hero-1 .dh-hero-qty span { width: 44px; height: 44px; display: flex; align-items: center; justify-content: center; font-size: 15px; font-weight: 600; border-left: 1px solid rgba(2,32,68,0.15); border-right: 1px solid rgba(2,32,68,0.15); }
+  #dh-hero-1 .dh-hero-atc { width: 100%; background: #9dc1f3; color: #ffffff; font-family: monospace; font-size: 15px; font-weight: 700; letter-spacing: 1px; line-height: 18px; border-radius: 40px; border: 1px solid #000; box-shadow: rgba(0,0,0,0.33) 0px 4px 4px 0px; padding: 14px 10px; cursor: pointer; margin-bottom: 12px; text-transform: uppercase; }
+  #dh-hero-1 .dh-hero-trust { display: flex; flex-wrap: wrap; gap: 8px; justify-content: center; margin-bottom: 24px; }
+  #dh-hero-1 .dh-hero-trust span { font-size: 11px; color: rgba(2,32,68,0.65); font-weight: 500; display: flex; align-items: center; gap: 4px; }
+  #dh-hero-1 .dh-hero-trust span::before { content: '✓'; color: #9dc1f3; }
+  #dh-hero-1 details { border-top: 1px solid rgba(2,32,68,0.15); padding-top: 12px; margin-bottom: 8px; }
+  #dh-hero-1 details summary { cursor: pointer; font-weight: 600; font-size: 15px; display: flex; justify-content: space-between; padding-bottom: 12px; list-style: none; }
+  #dh-hero-1 details summary::-webkit-details-marker { display: none; }
+  #dh-hero-1 details summary::after { content: '+'; font-size: 18px; font-weight: 300; }
+  #dh-hero-1 details[open] summary::after { content: '−'; }
+  #dh-hero-1 details .dh-hero-acc-body { padding-bottom: 16px; font-size: 14px; color: rgba(2,32,68,0.75); line-height: 1.6; }
+  #dh-hero-1 table { border-collapse: collapse; width: 100%; margin-top: 8px; }
+  #dh-hero-1 table td, #dh-hero-1 table th { padding: 6px 10px; border: 1px solid rgba(2,32,68,0.15); font-size: 12px; }
+  #dh-hero-1 table th { background: #022044; color: #fff; text-align: left; }
+  #dh-hero-1 table th.right { text-align: right; }
+  #dh-hero-1 tr.alt { background: #e4edf9; }
+  #dh-hero-1 td.qty { text-align: right; font-family: monospace; }
+</style>
+<section id="dh-hero-1">
+  <div class="dh-hero-grid">
+    <div class="dh-hero-gallery">
+      <div class="dh-hero-thumbs">
+        <button class="active" data-img="0"><img src="/dogishuman/Dog_is_Human_r1_095A6323_1.jpg" alt="thumb 1"></button>
+        <button data-img="1"><img src="/dogishuman/DogisHuman_r1_095A6337.webp" alt="thumb 2"></button>
+        <button data-img="2"><img src="/dogishuman/edit3.png" alt="thumb 3"></button>
+        <button data-img="3"><img src="/dogishuman/5_1_1.webp" alt="thumb 4"></button>
+        <button data-img="4"><img src="/dogishuman/dog_with_multi.jpg" alt="thumb 5"></button>
+      </div>
+      <div class="dh-hero-main">
+        <div class="dh-hero-ticker">best seller · best seller · best seller · best seller · best seller</div>
+        <img id="dh-hero-main-1" src="/dogishuman/Dog_is_Human_r1_095A6323_1.jpg" alt="DM-01™">
+      </div>
+    </div>
+    <div class="dh-hero-info">
+      <span class="dh-hero-badge">best seller</span>
+      <p class="dh-hero-eyebrow">HUMAN-GRADE PET HEALTH™</p>
+      <h1>DM-01™</h1>
+      <p class="dh-hero-subtitle">Daily Multivitamin</p>
+      <div class="dh-hero-rating"><span class="dh-hero-stars">★★★★★</span><span class="dh-hero-rcount">4.8 (50,849 reviews)</span></div>
+      <p class="dh-hero-desc">The human-grade multivitamin soft chews for key nutritional support & long-term health in one daily treat.</p>
+      <ul class="dh-hero-pills">
+        <li>12 clinically-studied ingredients</li>
+        <li>Suitable for all dogs 3 months +</li>
+        <li>Five essential health benefits in one</li>
+      </ul>
+      <p class="dh-hero-section-label">Select Flavor:</p>
+      <div class="dh-hero-flavors">
+        <button class="dh-hero-flavor active" data-flavor="chicken">Chicken</button>
+        <button class="dh-hero-flavor" data-flavor="beef">Beef</button>
+      </div>
+      <div class="dh-hero-buy-options">
+        <label class="dh-hero-option active" data-purchase="subscribe">
+          <div class="dh-hero-option-row">
+            <input type="radio" name="dh-purchase-1" class="dh-hero-option-radio" checked>
+            <div style="flex:1;">
+              <div class="dh-hero-option-row"><span class="dh-hero-option-name">Subscribe & Save 15%</span><span class="dh-hero-price-pill">$39.10</span></div>
+              <select class="dh-hero-delivery"><option>Delivery Every Month - Most Popular</option><option>Every 3 weeks</option><option>Every 2 Months</option></select>
+              <p class="dh-hero-fine">✔️ FREE Shipping Always. Easy Cancel Anytime.</p>
+              <p class="dh-hero-fine accent">✨ Code DOGDAY for 25% OFF (Ends Soon)</p>
+            </div>
+          </div>
+        </label>
+        <label class="dh-hero-option" data-purchase="onetime">
+          <div class="dh-hero-option-row">
+            <input type="radio" name="dh-purchase-1" class="dh-hero-option-radio">
+            <div style="flex:1;">
+              <div class="dh-hero-option-row"><span class="dh-hero-option-name">One-time Purchase</span><span class="dh-hero-price-plain">$46.00</span></div>
+            </div>
+          </div>
+        </label>
+      </div>
+      <div class="dh-hero-qty"><button>−</button><span>1</span><button>+</button></div>
+      <button class="dh-hero-atc">Add to cart</button>
+      <div class="dh-hero-trust">
+        <span>30-Day Money Back Guarantee</span>
+        <span>Orders Arrive in 1-4 Days</span>
+        <span>Vet-Formulated</span>
+        <span>Made in Vermont</span>
+      </div>
+      <details>
+        <summary>Serving Information</summary>
+        <div class="dh-hero-acc-body">
+          <p>Serve the chews each morning with food or just as a stand-alone treat.</p>
+          <table><tbody>
+            <tr><td>0–25 lbs</td><td>1 Chew</td></tr>
+            <tr><td>25–75 lbs</td><td>2 Chews</td></tr>
+            <tr><td>75+ lbs</td><td>3 Chews</td></tr>
+          </tbody></table>
+          <p style="margin-top:8px;font-size:12px;">** Each jar contains 60 chews</p>
+        </div>
+      </details>
+      <details>
+        <summary>Ingredients</summary>
+        <div class="dh-hero-acc-body">
+          <p style="font-weight:600;color:#022044;margin-bottom:8px;">Active Ingredients (per chew):</p>
+          <table>
+            <thead><tr><th>Ingredient</th><th class="right">Quantity</th></tr></thead>
+            <tbody>
+              <tr class="alt"><td>Glucosamine HCl (shrimp and crab)</td><td class="qty">200 MG</td></tr>
+              <tr><td>Methylsulfonylmethane (MSM)</td><td class="qty">100 MG</td></tr>
+              <tr class="alt"><td>Total Microorganisms (3 strains)</td><td class="qty">500 million CFU</td></tr>
+              <tr><td>Wild Alaskan Salmon Oil</td><td class="qty">95 MG</td></tr>
+              <tr class="alt"><td>Vitamin A</td><td class="qty">1000 IU</td></tr>
+              <tr><td>CoQ10</td><td class="qty">10 MG</td></tr>
+              <tr class="alt"><td>Natural Vitamin E</td><td class="qty">4 IU</td></tr>
+              <tr><td>Riboflavin (B2)</td><td class="qty">1 MG</td></tr>
+              <tr class="alt"><td>Pyridoxine (B6)</td><td class="qty">1 MG</td></tr>
+              <tr><td>Folic Acid (B9)</td><td class="qty">0.22 MG</td></tr>
+              <tr class="alt"><td>Methylcobalamin (B12)</td><td class="qty">0.005 MG</td></tr>
+              <tr><td>Vitamin D3</td><td class="qty">0.002 MG</td></tr>
+            </tbody>
+          </table>
+          <p style="font-size:12px;margin-top:12px;"><strong>Inactive Ingredients:</strong> chicken liver, coconut glycerin, coconut oil, brewers yeast, buffered white distilled vinegar, citric acid, natural hickory smoke flavor, rosemary extract, sunflower lecithin, sunflower oil, tapioca starch</p>
+        </div>
+      </details>
+    </div>
+  </div>
+</section>
+<script>
+(function(){
+  var root = document.getElementById('dh-hero-1');
+  if (!root) return;
+  var main = document.getElementById('dh-hero-main-1');
+  var thumbs = root.querySelectorAll('.dh-hero-thumbs button');
+  thumbs.forEach(function(btn){
+    btn.addEventListener('click', function(){
+      thumbs.forEach(function(b){ b.classList.remove('active'); });
+      btn.classList.add('active');
+      var src = btn.querySelector('img').getAttribute('src');
+      if (main) main.setAttribute('src', src);
+    });
+  });
+  var flavors = root.querySelectorAll('.dh-hero-flavor');
+  flavors.forEach(function(btn){
+    btn.addEventListener('click', function(){
+      flavors.forEach(function(b){ b.classList.remove('active'); });
+      btn.classList.add('active');
+    });
+  });
+  var options = root.querySelectorAll('.dh-hero-option');
+  options.forEach(function(opt){
+    opt.addEventListener('click', function(){
+      options.forEach(function(o){ o.classList.remove('active'); });
+      opt.classList.add('active');
+      var radio = opt.querySelector('input[type=radio]');
+      if (radio) radio.checked = true;
+    });
+  });
+})();
+</script>
