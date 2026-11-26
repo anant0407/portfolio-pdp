@@ -201,6 +201,34 @@
 
   "projects": [
     {
+      "id": "c4c-pdp",
+      "title": "PDP redesign: Candles 4 The Culture",
+      "blurb": "Product page concept for a culture-inspired candle brand.",
+      "tag": "both",
+      "image": "assets/candles-4-the-culture-before-after.jpg",
+      "shots": {
+        "phone": {
+          "before": "assets/shots/c4c-before-phone.jpg",
+          "after": "assets/shots/c4c-after-phone.jpg"
+        },
+        "desktop": {
+          "before": "assets/shots/c4c-before-desktop.jpg",
+          "after": "assets/shots/c4c-after-desktop.jpg"
+        }
+      },
+      "alt": "Candles 4 The Culture product page on a phone, live version beside the redesign",
+      "caption": "before / after, mobile",
+      "placeholder": false,
+      "caseUrl": "case-studies/candles-4-the-culture/",
+      "modal": {
+        "situation": "Candles 4 The Culture hand-pours culture-inspired candles in Atlanta. Its $20 Bebe's Kids candle sells a \"nostalgic cereal scent\" on a near-stock Shopify theme with one product photo. Unsolicited, with no client and no traffic access.",
+        "found": "7 of 10 reviews compare it to a cereal, but the page never names one. There is no gift option before checkout, \"Free shipping for U.S. orders $75 and up\" appears only on the policy page, and on mobile a doubled cookie banner covers the screen under the price.",
+        "hypothesis": "Leading the buy box with \"Smells like a bowl of fruity cereal in front of Saturday-morning cartoons.\", a customer quote and liner notes from the jar label will raise add-to-cart rate.",
+        "result": "Not run: no traffic access. Pre-registered instead, on assumed baselines: 9,907 visitors per arm for add-to-cart rate (7.0% to 8.05%), 21,750 for orders with a gift note (5% to 10%), and 78,250 for orders of $75 or more (15% to 18.75%).",
+        "changed": "A rebuilt product page with the scent in words, a free gift note and a cart drawer, the $75 free-shipping line and a solid button. Plus a Saturday-morning landing variant: \"Your Saturday mornings, in a jar.\""
+      }
+    },
+    {
       "id": "free-to-eat-homepage",
       "title": "Homepage redesign: Free To Eat",
       "blurb": "Homepage concept for an allergen-free cookie brand.",
