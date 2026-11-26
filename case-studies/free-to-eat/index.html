@@ -1,0 +1,349 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Free To Eat homepage</title>
+<meta name="description" content="Unsolicited redesign of the Free To Eat homepage: audit, three ranked hypotheses, a rebuilt page, a gluten-free landing variant and a pre-registered test plan.">
+<meta name="robots" content="noindex">
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Crect width='32' height='32' fill='%23022044'/%3E%3Ccircle cx='16' cy='16' r='6' fill='%239dc1f3'/%3E%3C/svg%3E">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@700&family=Inter:wght@400..700&display=swap" rel="stylesheet">
+<!-- tokens, .shell, .eyebrow, .btn come from the portfolio stylesheet -->
+<link rel="stylesheet" href="../../styles.css">
+<style>
+  .case { padding-block: 32px var(--section-y); }
+  .case section { padding-block: 40px; border-top: 1px solid var(--line); }
+  .case section:first-of-type { border-top: 0; }
+  .case h1 {
+    font-size: clamp(2rem, 5vw, 3.25rem); font-weight: 700;
+    line-height: 1.1; letter-spacing: -.02em; margin: 14px 0 16px; text-wrap: balance;
+  }
+  .case h2 { font-size: clamp(1.5rem, 3vw, 2rem); line-height: 1.2; margin-bottom: 16px; }
+  .case h3 { font-size: 1.0625rem; line-height: 1.4; margin: 24px 0 8px; }
+  .case p, .case li { color: var(--ink-muted); max-width: 68ch; }
+  .case p + p { margin-top: 12px; }
+  .case ul.list { list-style: disc; padding-left: 1.25em; }
+  .case ul.list li + li { margin-top: 8px; }
+  .case strong { color: var(--ink); }
+  .case blockquote { margin: 16px 0; padding-left: 16px; border-left: 3px solid var(--accent); color: var(--ink); max-width: 60ch; }
+  .case cite { display: block; font-style: normal; font-size: .8125rem; color: var(--ink-faint); margin-top: 4px; }
+  .back { font-size: .875rem; text-decoration: underline; text-underline-offset: 4px; }
+  .note {
+    display: block; margin-top: 4px; padding: 12px 16px; border-radius: var(--r-panel);
+    background: var(--yellow); color: var(--ink); font-size: .9375rem; font-weight: 600;
+  }
+  .tldr { margin-top: 20px; }
+  .tag {
+    display: inline-block; padding: 1px 8px; margin-right: 6px; border-radius: var(--r-sm);
+    background: var(--paper-alt); color: var(--ink); font: 700 .75rem var(--font-mono); letter-spacing: .04em;
+  }
+  /* findings and before/after pairs */
+  .finding { display: grid; gap: 16px 32px; margin-top: 28px; }
+  .finding h3 { margin-top: 0; }
+  .pair { display: grid; grid-template-columns: 1fr 1fr; gap: 12px; margin-top: 12px; }
+  .pair--one { grid-template-columns: minmax(0, 360px); }
+  figure a { display: block; }
+  figure img {
+    width: 100%; height: auto; border: 1px solid var(--line); border-radius: var(--r-panel);
+    background: var(--paper-card);
+  }
+  .clip img, a.clip img { aspect-ratio: 600 / 1000; object-fit: cover; object-position: top; }
+  figcaption { font-size: .8125rem; line-height: 1.45; color: var(--ink-faint); margin-top: 6px; }
+  figcaption b { color: var(--ink); }
+  @media (min-width: 820px) {
+    .finding { grid-template-columns: 1fr 1fr; align-items: start; }
+    .pair { max-width: 760px; }
+  }
+  .links { display: flex; flex-wrap: wrap; gap: 12px; margin-top: 20px; }
+  .links .btn { height: var(--tap); padding: 0 20px; font-size: .8125rem; }
+  /* tables scroll inside their own box, never the page */
+  .scroll { overflow-x: auto; margin-top: 16px; border: 1px solid var(--line); border-radius: var(--r-panel); background: var(--paper-card); }
+  table { border-collapse: collapse; width: 100%; font-size: .875rem; }
+  th, td { padding: 10px 12px; text-align: left; vertical-align: top; border-bottom: 1px solid var(--line); }
+  th { font-size: .75rem; letter-spacing: .06em; text-transform: uppercase; background: var(--paper-alt); }
+  tr:last-child td { border-bottom: 0; }
+  td.num { font-family: var(--font-mono); white-space: nowrap; }
+  tr.out td { color: var(--ink-faint); }
+  .formula { margin-top: 16px; font-family: var(--font-mono); font-size: .875rem; color: var(--ink); }
+  .foot-note { margin-top: 48px; font-size: .8125rem; color: var(--ink-faint); }
+  /* tabs: sticky bar over four panels. JS un-hides the bar and hides
+     inactive panels, so without JS the page is one long scroll as before */
+  .tabs {
+    position: sticky; top: 0; z-index: 20;
+    display: flex; gap: 4px; overflow-x: auto; scrollbar-width: thin;
+    margin-inline: calc(-1 * var(--gutter)); padding: 8px var(--gutter);
+    background: var(--paper); border-bottom: 1px solid var(--line);
+  }
+  .tabs [role="tab"] {
+    flex: none; min-height: var(--tap); padding: 0 16px; border-radius: var(--r-tab);
+    font-size: .9375rem; font-weight: 700; white-space: nowrap; color: var(--ink-muted); cursor: pointer;
+    transition: background-color .15s, color .15s;
+  }
+  .tabs [role="tab"]:hover { color: var(--ink); background: var(--accent-tint); }
+  .tabs [role="tab"][aria-selected="true"] { color: var(--ink); background: var(--accent); }
+  /* without JS the panels stack, so keep the divider between them */
+  .tabs[hidden] ~ .panel + .panel > section:first-of-type { border-top: 1px solid var(--line); }
+</style>
+</head>
+<body>
+<main class="case shell">
+
+  <a class="back" href="../../#work">Back to the portfolio</a>
+
+  <section aria-labelledby="tldr">
+    <span class="eyebrow">Case study · Web + creative</span>
+    <h1 id="tldr">Free To Eat: putting the cookie and the proof above the fold</h1>
+    <p class="note">Unsolicited concept. Not affiliated with Free To Eat. Self-initiated, no client.</p>
+    <ul class="list tldr">
+      <li>Free To Eat bakes allergen-free cookies in its own bakery in Loveland, Colorado. Its homepage opens on a pack-size launch notice, and the allergen proof is a logo image about three quarters of the way down.</li>
+      <li>I audited the page, ranked three hypotheses with ICE, rebuilt the homepage around them and wrote the test plan before anything ran.</li>
+      <li>Not run. I have no access to Free To Eat's traffic, so there is no result to report.</li>
+      <li>Live before and after pages are below, plus a hero variant for gluten-free adults.</li>
+    </ul>
+  </section>
+
+  <div class="tabs" role="tablist" aria-label="Case study sections" hidden>
+    <button type="button" role="tab" id="tab-overview" aria-controls="overview" aria-selected="true">Overview</button>
+    <button type="button" role="tab" id="tab-before-after" aria-controls="before-after" aria-selected="false">Before / after</button>
+    <button type="button" role="tab" id="tab-creative-angle" aria-controls="creative-angle" aria-selected="false">Creative angle</button>
+    <button type="button" role="tab" id="tab-hypotheses-results" aria-controls="hypotheses-results" aria-selected="false">Hypotheses &amp; results</button>
+  </div>
+
+  <div class="panel" role="tabpanel" id="overview" aria-labelledby="tab-overview">
+
+  <section aria-labelledby="situation">
+    <h2 id="situation">Situation</h2>
+    <p>Free To Eat (Cybele's Free To Eat, part of Awakened Foods) sells soft-baked and mini cookies plus a line of grain pops. Its FAQ says: "Our products are free from the Top 9 Allergens, which are dairy, eggs, wheat, soy, peanuts, tree nuts, fish, shellfish, and sesame." Its About page says the founders "eventually built our own allergen-free bakery in Loveland, just outside of Boulder, Colorado." No competitor I looked at makes that bakery claim.</p>
+    <p>The homepage uses neither line. I cloned it (26 Nov 2026) into a Next.js build and redesigned a copy, so both pages below run on the same code.</p>
+  </section>
+
+  <section aria-labelledby="found">
+    <h2 id="found">What I found</h2>
+    <p>Sources: the live page and its HTML, 33 Free To Eat reviews from Walmart and Amazon (the site shows no review text), and competitor homepages.</p>
+
+    <div class="finding">
+      <div>
+        <h3>1. The first screen fails a 5-second test</h3>
+        <p>The hero reads "New soft-baked cookie / Snack Packs / Now available in individually wrapped single serving size!" with a "View more" link. It says what's new, not what the brand is or who it's for. "TOP 9 ALLERGEN FREE" appears only as the seal printed on the pack in the photo, and the only <code>&lt;h1&gt;</code> on the page is the logo.</p>
+      </div>
+      <figure class="pair pair--one clip">
+        <a href="img/before-first-390.jpg"><img src="img/before-first-390.jpg" width="600" height="1298" loading="lazy" alt="Live homepage first mobile screen: rotating discount bar and a Snack Packs launch notice over a gingham background"></a>
+        <figcaption>Live page, mobile. A launch notice where the promise should be.</figcaption>
+      </figure>
+    </div>
+
+    <div class="finding">
+      <div>
+        <h3>2. The proof is a picture near the bottom</h3>
+        <p>Gluten-free, vegan, kosher, non-GMO and top 9 certifications sit in one flat logo image about 75% of the way down. The words exist only in its alt text, and the bakery isn't mentioned on the homepage at all. The press strip under it has no heading and empty alt text.</p>
+      </div>
+      <figure class="pair pair--one">
+        <a href="img/before-proof-390.jpg"><img src="img/before-proof-390.jpg" width="600" height="692" loading="lazy" alt="Live homepage near the bottom: certification logos as one image, then press logos with no heading"></a>
+        <figcaption>Clone of the live page, mobile. Certifications as one image, press logos with no label.</figcaption>
+      </figure>
+    </div>
+
+    <div class="finding">
+      <div>
+        <h3>3. The allergen claim changes wording from page to page</h3>
+        <p>The pack says "TOP 9 ALLERGEN FREE". The product page says "Baked in a dedicated gluten-free facility free of the top 9 allergens." The FAQ says "Our cookies are manufactured in a dedicated allergen-free facility that is free from the Top 9 Allergens", for cookies only. The homepage calls the pops "Allergy-friendly" and nothing says where they're made. For a shopper managing an allergy, four versions of the claim give four reasons to doubt it. The redesign uses one wording, for cookies only.</p>
+      </div>
+    </div>
+
+    <div class="finding">
+      <div>
+        <h3>4. Mobile takes 12.7 seconds to show its largest element</h3>
+        <p>PageSpeed (Lighthouse) on the live site: mobile performance 60, LCP 12.7s, against 1.7s on desktop. The hero image is already set to load eagerly with high priority, so the delay is more likely the render path: a blocking Typekit stylesheet for the display font and 47 script tags.</p>
+      </div>
+    </div>
+
+    <div class="finding">
+      <div>
+        <h3>5. Four offers in one bar</h3>
+        <p>The announcement bar rotates free shipping over $50 with THANKS30, THANKS40 and THANKS50 codes. The shipping policy doesn't mention the $50 threshold, and there's a separate 10% email offer below.</p>
+      </div>
+    </div>
+  </section>
+
+  </div>
+
+  <div class="panel" role="tabpanel" id="before-after" aria-labelledby="tab-before-after">
+
+  <section aria-labelledby="ba">
+    <h2 id="ba">Before and after</h2>
+    <p>Both pages are static exports of the same build, so you can scroll and click around them. Links to products point at the live store. The redesign keeps the brand's gingham, colours and type, and leaves the pops section as it is.</p>
+    <div class="links">
+      <a class="btn btn--dark" href="before/">Open the before page</a>
+      <a class="btn btn--dark" href="after/">Open the redesign</a>
+    </div>
+
+    <h3>First phone screen <span class="tag">H1</span></h3>
+    <div class="pair clip">
+      <figure><a href="img/before-first-390.jpg"><img src="img/before-first-390.jpg" width="600" height="1298" loading="lazy" alt="Before: launch notice hero with a rotating discount bar"></a><figcaption><b>Before.</b> Four rotating offers, a launch notice, "View more".</figcaption></figure>
+      <figure><a href="img/after-first-390.jpg"><img src="img/after-first-390.jpg" width="600" height="1298" loading="lazy" alt="After: A real, soft cookie headline, Free of the top 9 allergens, Shop soft-baked cookies button"></a><figcaption><b>After.</b> One offer. "A real, soft cookie." as the page's h1, the top 9 line in live text, one button to the cookies. The launch news moves to a slim strip.</figcaption></figure>
+    </div>
+
+    <h3>Allergen proof <span class="tag">H2</span></h3>
+    <div class="pair clip">
+      <figure><a href="img/before-proof-390.jpg"><img src="img/before-proof-390.jpg" width="600" height="692" loading="lazy" alt="Before: certification logo image and unlabelled press logos near the bottom of the page"></a><figcaption><b>Before.</b> One image, about 75% down.</figcaption></figure>
+      <figure><a href="img/after-proof-390.jpg"><img src="img/after-proof-390.jpg" width="600" height="1269" loading="lazy" alt="After: proof band naming all nine allergens, the Loveland bakery, certifications and an As seen in strip"></a><figcaption><b>After.</b> Right under the hero: the nine allergens by name, the bakery, the certifications in text, a link to the allergen FAQ, then "As seen in".</figcaption></figure>
+    </div>
+
+    <h3>Taste proof <span class="tag">H3</span></h3>
+    <div class="pair clip">
+      <figure><a href="img/before-taste-390.jpg"><img src="img/before-taste-390.jpg" width="600" height="923" loading="lazy" alt="Before: first-name testimonials, each under five identical stars"></a><figcaption><b>Before.</b> First names, identical stars, no source.</figcaption></figure>
+      <figure><a href="img/after-taste-390.jpg"><img src="img/after-taste-390.jpg" width="600" height="1115" loading="lazy" alt="After: Soft like a real cookie section with three credited Walmart review quotes"></a><figcaption><b>After.</b> Three verbatim Walmart.com reviews about softness and taste, credited, no stars.</figcaption></figure>
+    </div>
+
+    <h3>Desktop, first screen</h3>
+    <div class="pair">
+      <figure><a href="img/before-atf-1440.jpg"><img src="img/before-atf-1440.jpg" width="1000" height="625" loading="lazy" alt="Before: desktop hero with Snack Packs launch notice"></a><figcaption><b>Before.</b></figcaption></figure>
+      <figure><a href="img/after-atf-1440.jpg"><img src="img/after-atf-1440.jpg" width="1000" height="625" loading="lazy" alt="After: desktop hero with the promise on the left and the packs on the right"></a><figcaption><b>After.</b></figcaption></figure>
+    </div>
+
+    <h3>Speed</h3>
+    <p>On a local stand-in test, mobile LCP went from <strong>14.7s on the clone to 1.7s on the redesign</strong>. This is not a Lighthouse score: Lighthouse wasn't installed, so I measured over Chrome DevTools Protocol at 390px with 4x CPU slowdown and slow 4G (150ms RTT, 1.6 Mbps), cache off, median of 3 runs. In both builds the LCP element is the hero image. The redesign serves a 39 KB, 900px-wide JPG through a preload instead of the 452 KB original, and puts the headline text first on mobile.</p>
+  </section>
+
+  </div>
+
+  <div class="panel" role="tabpanel" id="creative-angle" aria-labelledby="tab-creative-angle">
+
+  <section aria-labelledby="ad">
+    <h2 id="ad">Ad to page: gluten-free adults</h2>
+    <p>The largest buyer group in Free To Eat's own reviews is adults who eat gluten-free, dairy-free or vegan, or their partners (7 of 33). Across the brand and its competitors, 13 reviews say some version of "tastes like a regular cookie".</p>
+    <blockquote>"These taste great! Soft and don't taste gluten free. I will purchase again !"<cite>jn, Walmart.com review, Soft-Baked Oatmeal Raisin</cite></blockquote>
+    <p>So the hook is "Gluten-free. You'd never know." The page variant swaps the hero only: that headline, the subline "Soft-baked in our own allergen-free bakery." and the same "Shop soft-baked cookies" button. Everything below the hero matches the base redesign, so an ad split tests the message alone. I'd judge it on cost per add-to-cart against the base redesign, same ad.</p>
+    <div class="finding">
+      <figure class="pair pair--one clip">
+        <a href="img/after-gf-390.jpg"><img src="img/after-gf-390.jpg" width="600" height="1298" loading="lazy" alt="Gluten-free variant: Gluten-free. You'd never know. headline above the Shop soft-baked cookies button"></a>
+        <figcaption>The gluten-free variant's first screen.</figcaption>
+      </figure>
+      <div>
+        <h3>Two angles I rejected</h3>
+        <ul class="list">
+          <li>Allergy parents and school lunches: only 2 of 33 Free To Eat reviews, and nobody mentions school. Most of that evidence comes from competitors.</li>
+          <li>The whole household: 6 reviews, the thinnest evidence of the three.</li>
+        </ul>
+        <div class="links">
+          <a class="btn btn--dark" href="after/?angle=gf">Open the gluten-free variant</a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  </div>
+
+  <div class="panel" role="tabpanel" id="hypotheses-results" aria-labelledby="tab-hypotheses-results">
+
+  <section aria-labelledby="hyp">
+    <h2 id="hyp">Hypotheses</h2>
+    <p>Three carried forward, each built as its own block on the page so they can be tested one at a time.</p>
+
+    <h3><span class="tag">H1</span>A promise hero</h3>
+    <p>Replacing the launch notice with "A real, soft cookie.", a live-text top 9 line and a "Shop soft-baked cookies" button will send more homepage visitors to a product page.</p>
+
+    <h3><span class="tag">H2</span>Proof under the hero</h3>
+    <p>A proof band with one claim wording, the nine allergens named, the Loveland bakery and the certifications in text will raise the conversion rate of sessions that start on the homepage.</p>
+
+    <h3><span class="tag">H3</span>Taste proof, moved up</h3>
+    <p>Three credited reviews about softness and taste, high on the page, will raise add-to-cart rate. Dry or stale is the most common complaint in the category reviews (14 mentions), and the current page never answers it.</p>
+
+    <h3>How I ranked them</h3>
+    <p>Each scored 1 to 10 on Impact, Confidence (how many reviews and competitors back the claim) and Ease (homepage change only, no new tools). The score is the plain average.</p>
+    <div class="scroll">
+      <table>
+        <thead><tr><th>ID</th><th>Hypothesis</th><th>Primary metric</th><th>I</th><th>C</th><th>E</th><th>Score</th></tr></thead>
+        <tbody>
+          <tr><td class="num">H1</td><td>Promise hero, top 9 line, cookie CTA</td><td>Homepage → PDP click-through</td><td class="num">7</td><td class="num">7</td><td class="num">9</td><td class="num">7.7</td></tr>
+          <tr><td class="num">H2</td><td>Proof band under the hero</td><td>CVR, homepage-start sessions</td><td class="num">8</td><td class="num">6</td><td class="num">8</td><td class="num">7.3</td></tr>
+          <tr><td class="num">H3</td><td>Three taste quotes, moved high</td><td>Add-to-cart rate, homepage sessions</td><td class="num">6</td><td class="num">6</td><td class="num">7</td><td class="num">6.3</td></tr>
+          <tr class="out"><td class="num">n/a</td><td>Quick-add on product cards</td><td>Not carried</td><td class="num"></td><td class="num"></td><td class="num"></td><td class="num">5.3</td></tr>
+        </tbody>
+      </table>
+    </div>
+  </section>
+
+  <section aria-labelledby="result">
+    <h2 id="result">Result</h2>
+    <p class="note">Not run. No traffic access.</p>
+    <p style="margin-top:16px">The plan, written before anything goes live. Each test runs 50/50 by visitor on homepage entrances, with a fixed horizon and no peeking. Baselines are my assumptions, not Free To Eat's numbers; with the brand's data I'd replace them and rerun. Two-proportion z-test, α 0.05, power 0.8.</p>
+    <div class="scroll">
+      <table>
+        <thead><tr><th>Test</th><th>Primary metric</th><th>Assumed baseline → target</th><th>Visitors per arm</th></tr></thead>
+        <tbody>
+          <tr><td class="num">H1</td><td>Homepage → PDP click-through</td><td class="num">30% → 33% (+10%)</td><td class="num">3,763</td></tr>
+          <tr><td class="num">H2</td><td>CVR, homepage-start sessions</td><td class="num">2.0% → 2.3% (+15%)</td><td class="num">36,693</td></tr>
+          <tr><td class="num">H3</td><td>Add-to-cart rate, homepage sessions</td><td class="num">6.0% → 6.6% (+10%)</td><td class="num">25,740</td></tr>
+        </tbody>
+      </table>
+    </div>
+    <p class="formula">weeks = visitors needed ÷ weekly homepage sessions</p>
+    <p>Each test stops once both arms reach their number and at least two full weeks have run. If that would take more than 8 weeks, I wouldn't start it.</p>
+  </section>
+
+  <section aria-labelledby="cleanup">
+    <h2 id="cleanup">Shipped without a test</h2>
+    <ul class="list">
+      <li>One offer in the bar (free shipping over $50) instead of four.</li>
+      <li>One brand name and one support email; the parent company moves to a footer line.</li>
+      <li>Section order: promise, proof, products, taste, pops, story and FAQ. The Whole Foods push becomes one line near the bottom.</li>
+      <li>Hero image preloaded at 39 KB, headline text first on mobile.</li>
+    </ul>
+  </section>
+
+  </div>
+
+  <p class="foot-note">Unsolicited concept. Not affiliated with Free To Eat. Product photos and review quotes belong to their owners and are shown only to illustrate the redesign. <a class="back" href="../../#work">Back to the portfolio</a></p>
+</main>
+<script>
+(() => {
+  const bar = document.querySelector('.tabs');
+  const tabs = [...bar.querySelectorAll('[role="tab"]')];
+  const panels = tabs.map(t => document.getElementById(t.getAttribute('aria-controls')));
+  const alias = { hypotheses: 'hypotheses-results' };
+
+  function show(i, scroll) {
+    tabs.forEach((t, j) => {
+      t.setAttribute('aria-selected', i === j);
+      t.tabIndex = i === j ? 0 : -1;
+      panels[j].hidden = i !== j;
+    });
+    // only re-align when the bar is already stuck, so switching never scrolls the title away
+    if (scroll && bar.getBoundingClientRect().top <= 1)
+      scrollTo(0, panels[i].getBoundingClientRect().top + scrollY - bar.offsetHeight);
+  }
+
+  // the hash may name a panel, an alias, or any id inside a panel (#ba, #result, ...)
+  function route() {
+    const id = location.hash.slice(1);
+    const el = id && document.getElementById(alias[id] || id);
+    const i = panels.indexOf(el && el.closest('[role="tabpanel"]'));
+    if (i < 0) return false;
+    show(i);
+    el.scrollIntoView();
+    return true;
+  }
+
+  tabs.forEach((t, i) => t.addEventListener('click', () => {
+    show(i, true);
+    history.replaceState(null, '', '#' + panels[i].id);
+  }));
+  bar.addEventListener('keydown', e => {
+    const d = { ArrowRight: 1, ArrowLeft: -1 }[e.key];
+    if (!d) return;
+    e.preventDefault();
+    const t = tabs[(tabs.indexOf(e.target) + d + tabs.length) % tabs.length];
+    t.focus();
+    t.click();
+  });
+  addEventListener('hashchange', route);
+
+  bar.hidden = false;
+  if (!route()) show(0);
+})();
+</script>
+</body>
+</html>

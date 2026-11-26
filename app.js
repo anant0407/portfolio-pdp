@@ -182,7 +182,9 @@
     });
 
     /* contact links + the real mailto */
-    var email = d.contact.email || '';
+    /* stored split so the address never appears whole in content.json */
+    var c = d.contact;
+    var email = c.emailDomain ? c.emailUser + '@' + c.emailDomain : (c.emailUser || '');
     var mail = $('#mailCta');
     text(mail, d.cta.label);
     mail.href = email.indexOf('@') > -1
@@ -408,7 +410,8 @@
   function renderProjects(d) {
     var host = $('#projectGrid');
 
-    (d.projects || []).forEach(function (p) {
+    /* unfinished projects stay in content.json but off the page */
+    (d.projects || []).filter(function (p) { return !p.placeholder; }).forEach(function (p) {
       var li = tpl('tpl-card');
       li.dataset.tag = p.tag || 'both';
 

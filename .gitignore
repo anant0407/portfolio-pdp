@@ -6,3 +6,9 @@
 Thumbs.db
 desktop.ini
 .vscode/
+
+# Local-only: drafts and reference material, kept off the public site
+reference/
+startprompt.txt
+pdp-portfolio-copy-script.md
+Portfolio PDP.dc.html

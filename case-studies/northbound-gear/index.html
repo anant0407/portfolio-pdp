@@ -1,0 +1,362 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Northbound Gear PDP case study</title>
+<meta name="description" content="Unsolicited redesign of the Northbound Gear Adventure Pants product page: audit, ranked hypotheses, a rebuilt page and a pre-registered test plan.">
+<meta name="robots" content="noindex">
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Crect width='32' height='32' fill='%23022044'/%3E%3Ccircle cx='16' cy='16' r='6' fill='%239dc1f3'/%3E%3C/svg%3E">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@700&family=Inter:wght@400..700&display=swap" rel="stylesheet">
+<!-- tokens, .shell, .eyebrow, .btn come from the portfolio stylesheet -->
+<link rel="stylesheet" href="../../styles.css">
+<style>
+  .case { padding-block: 32px var(--section-y); }
+  .case section { padding-block: 40px; border-top: 1px solid var(--line); }
+  .case section:first-of-type { border-top: 0; }
+  .case h1 {
+    font-size: clamp(2rem, 5vw, 3.25rem); font-weight: 700;
+    line-height: 1.1; letter-spacing: -.02em; margin: 14px 0 16px; text-wrap: balance;
+  }
+  .case h2 { font-size: clamp(1.5rem, 3vw, 2rem); line-height: 1.2; margin-bottom: 16px; }
+  .case h3 { font-size: 1.0625rem; line-height: 1.4; margin: 24px 0 8px; }
+  .case p, .case li { color: var(--ink-muted); max-width: 68ch; }
+  .case p + p { margin-top: 12px; }
+  .case ul.list { list-style: disc; padding-left: 1.25em; }
+  .case ul.list li + li { margin-top: 8px; }
+  .case strong { color: var(--ink); }
+  .case blockquote { margin: 16px 0; padding-left: 16px; border-left: 3px solid var(--accent); color: var(--ink); max-width: 60ch; }
+  .case cite { display: block; font-style: normal; font-size: .8125rem; color: var(--ink-faint); margin-top: 4px; }
+  .back { font-size: .875rem; text-decoration: underline; text-underline-offset: 4px; }
+  .note {
+    display: block; margin-top: 4px; padding: 12px 16px; border-radius: var(--r-panel);
+    background: var(--yellow); color: var(--ink); font-size: .9375rem; font-weight: 600;
+  }
+  .tldr { margin-top: 20px; }
+  .tag {
+    display: inline-block; padding: 1px 8px; margin-right: 6px; border-radius: var(--r-sm);
+    background: var(--paper-alt); color: var(--ink); font: 700 .75rem var(--font-mono); letter-spacing: .04em;
+  }
+  /* findings and before/after pairs */
+  .finding { display: grid; gap: 16px 32px; margin-top: 28px; }
+  .finding h3 { margin-top: 0; }
+  .pair { display: grid; grid-template-columns: 1fr 1fr; gap: 12px; margin-top: 12px; }
+  .pair--one { grid-template-columns: minmax(0, 360px); }
+  figure a { display: block; }
+  figure img {
+    width: 100%; height: auto; border: 1px solid var(--line); border-radius: var(--r-panel);
+    background: var(--paper-card);
+  }
+  .clip img, a.clip img { aspect-ratio: 600 / 1000; object-fit: cover; object-position: top; }
+  figcaption { font-size: .8125rem; line-height: 1.45; color: var(--ink-faint); margin-top: 6px; }
+  figcaption b { color: var(--ink); }
+  @media (min-width: 820px) {
+    .finding { grid-template-columns: 1fr 1fr; align-items: start; }
+    .pair { max-width: 760px; }
+  }
+  .links { display: flex; flex-wrap: wrap; gap: 12px; margin-top: 20px; }
+  .links .btn { height: var(--tap); padding: 0 20px; font-size: .8125rem; }
+  /* tables scroll inside their own box, never the page */
+  .scroll { overflow-x: auto; margin-top: 16px; border: 1px solid var(--line); border-radius: var(--r-panel); background: var(--paper-card); }
+  table { border-collapse: collapse; width: 100%; font-size: .875rem; }
+  th, td { padding: 10px 12px; text-align: left; vertical-align: top; border-bottom: 1px solid var(--line); }
+  th { font-size: .75rem; letter-spacing: .06em; text-transform: uppercase; background: var(--paper-alt); }
+  tr:last-child td { border-bottom: 0; }
+  td.num { font-family: var(--font-mono); white-space: nowrap; }
+  tr.out td { color: var(--ink-faint); }
+  .formula { margin-top: 16px; font-family: var(--font-mono); font-size: .875rem; color: var(--ink); }
+  .foot-note { margin-top: 48px; font-size: .8125rem; color: var(--ink-faint); }
+  /* tabs: sticky bar over four panels. JS un-hides the bar and hides
+     inactive panels, so without JS the page is one long scroll as before */
+  .tabs {
+    position: sticky; top: 0; z-index: 20;
+    display: flex; gap: 4px; overflow-x: auto; scrollbar-width: thin;
+    margin-inline: calc(-1 * var(--gutter)); padding: 8px var(--gutter);
+    background: var(--paper); border-bottom: 1px solid var(--line);
+  }
+  .tabs [role="tab"] {
+    flex: none; min-height: var(--tap); padding: 0 16px; border-radius: var(--r-tab);
+    font-size: .9375rem; font-weight: 700; white-space: nowrap; color: var(--ink-muted); cursor: pointer;
+    transition: background-color .15s, color .15s;
+  }
+  .tabs [role="tab"]:hover { color: var(--ink); background: var(--accent-tint); }
+  .tabs [role="tab"][aria-selected="true"] { color: var(--ink); background: var(--accent); }
+  /* without JS the panels stack, so keep the divider between them */
+  .tabs[hidden] ~ .panel + .panel > section:first-of-type { border-top: 1px solid var(--line); }
+</style>
+</head>
+<body>
+<main class="case shell">
+
+  <a class="back" href="../../#work">Back to the portfolio</a>
+
+  <section aria-labelledby="tldr">
+    <span class="eyebrow">Case study · Web + creative</span>
+    <h1 id="tldr">Northbound Gear: fixing fit and offer on a pants product page</h1>
+    <p class="note">Unsolicited concept. Not affiliated with Northbound Gear. Self-initiated, no client.</p>
+    <ul class="list tldr">
+      <li>The page tells shoppers the pants fit "true to size" and to size up for comfort. The reviews say the calf is slim and sizing up just loosens the waist.</li>
+      <li>I audited the page, ranked six hypotheses with ICE, rebuilt it with the top three, and wrote the test plan before anything ran.</li>
+      <li>Not run. I have no access to Northbound's traffic, so there is no result to report.</li>
+      <li>Live before and after pages are below, plus one ad-audience variant for outdoor workers.</li>
+    </ul>
+  </section>
+
+  <div class="tabs" role="tablist" aria-label="Case study sections" hidden>
+    <button type="button" role="tab" id="tab-overview" aria-controls="overview" aria-selected="true">Overview</button>
+    <button type="button" role="tab" id="tab-before-after" aria-controls="before-after" aria-selected="false">Before / after</button>
+    <button type="button" role="tab" id="tab-creative-angle" aria-controls="creative-angle" aria-selected="false">Creative angle</button>
+    <button type="button" role="tab" id="tab-hypotheses-results" aria-controls="hypotheses-results" aria-selected="false">Hypotheses &amp; results</button>
+  </div>
+
+  <div class="panel" role="tabpanel" id="overview" aria-labelledby="tab-overview">
+
+  <section aria-labelledby="situation">
+    <h2 id="situation">Situation</h2>
+    <p>Northbound Gear is a family-owned brand in Vancouver. Its Men's Adventure Water Resistant Pants sell for CA$139 and carry 4.9 stars from 1,508 reviews. On a phone, Add to cart doesn't show up until about 1,250px down the page, and the fit advice sits at 2,592px.</p>
+    <p>I picked it because the page and its own reviews disagree about fit. To make the "before" honest, I cloned the live page (CAD, 26 Nov 2026) into a Next.js build and redesigned a copy of it, so both pages below run on the same code.</p>
+  </section>
+
+  <section aria-labelledby="found">
+    <h2 id="found">What I found</h2>
+    <p>Sources: the page itself, 64 reviews (low ratings over-sampled on purpose, so counts show that a theme exists, not how common it is), and three competitor product pages.</p>
+
+    <div class="finding">
+      <div>
+        <h3>1. The fit copy points the wrong way</h3>
+        <p>The page says "Fits true to size, similar to your favourite jeans" and "Size up for a relaxed fit". 8 of the 64 reviews complain about a tight calf. Two sized up for the leg and got a waist that falls down.</p>
+      </div>
+      <figure class="pair pair--one clip">
+        <a href="img/before-sizefit-390.jpg"><img src="img/before-sizefit-390.jpg" width="600" height="1000" loading="lazy" alt="Live page Size + Fit section: fits true to size, size up for a relaxed fit"></a>
+        <figcaption>Live page, mobile. The advice that sends big-calf buyers into a loose waist.</figcaption>
+      </figure>
+    </div>
+
+    <div class="finding">
+      <div>
+        <h3>2. No fit help where the size gets picked</h3>
+        <p>On mobile the size chips sit near y=1,000 and Size + Fit is 1,600px further down. The only aid at the picker is a "Size chart" link 14px tall, and the chart only repeats the label: waist 34 is 34.</p>
+      </div>
+      <figure class="pair pair--one">
+        <a href="img/before-size-chart-1440.jpg"><img src="img/before-size-chart-1440.jpg" width="800" height="750" loading="lazy" alt="Live size chart: size, waist and length columns with identical numbers"></a>
+        <figcaption>Live size chart. No thigh, knee or leg opening.</figcaption>
+      </figure>
+    </div>
+
+    <div class="finding">
+      <div>
+        <h3>3. Add to cart comes before the price</h3>
+        <p>On mobile, Add to cart (y=1,247) sits above the price (y=1,297). Neither is on the first screen, and there's no sticky bar.</p>
+      </div>
+      <div class="pair clip">
+        <figure><a href="img/before-first-390.jpg"><img src="img/before-first-390.jpg" width="600" height="1299" loading="lazy" alt="Live page first mobile screen: title, stars and photo, no price"></a><figcaption>First screen: no price.</figcaption></figure>
+        <figure><a href="img/before-buybox-390.jpg"><img src="img/before-buybox-390.jpg" width="600" height="1307" loading="lazy" alt="Live mobile buy box: Add to cart button above the price"></a><figcaption>Further down: button, then price.</figcaption></figure>
+      </div>
+    </div>
+
+    <div class="finding">
+      <div>
+        <h3>4. The best offer is two paragraphs of prose</h3>
+        <p>"Second pair 40% off" has no badge, no way to add a second pair, and nothing in the cart drawer. 14 of 64 reviewers own two or more pairs, so the demand is there.</p>
+      </div>
+      <figure class="pair pair--one">
+        <a href="img/before-cart-1440.jpg"><img src="img/before-cart-1440.jpg" width="800" height="750" loading="lazy" alt="Live cart drawer with one pair and no mention of the second-pair offer"></a>
+        <figcaption>Live cart drawer. The offer is gone, and package protection is pre-added to Checkout.</figcaption>
+      </figure>
+    </div>
+  </section>
+
+  </div>
+
+  <div class="panel" role="tabpanel" id="before-after" aria-labelledby="tab-before-after">
+
+  <section aria-labelledby="ba">
+    <h2 id="ba">Before and after</h2>
+    <p>Both pages are static exports of the same build, so you can click around them. Checkout is switched off. Every changed element carries a <code>data-hyp</code> attribute naming its hypothesis (12 in all); search for it in dev tools.</p>
+    <div class="links">
+      <a class="btn btn--dark" href="before/">Open the before page</a>
+      <a class="btn btn--dark" href="after/">Open the redesign</a>
+    </div>
+
+    <h3>First phone screen <span class="tag">H6</span><span class="tag">H5</span></h3>
+    <div class="pair clip">
+        <figure><a href="img/before-first-390.jpg"><img src="img/before-first-390.jpg" width="600" height="1299" loading="lazy" alt="Before: first mobile screen without price or button"></a><figcaption><b>Before.</b> Title, stars, photo.</figcaption></figure>
+        <figure><a href="img/after-first-390.jpg"><img src="img/after-first-390.jpg" width="600" height="1299" loading="lazy" alt="After: price, offer badge and sticky Select size bar on the first screen"></a><figcaption><b>After.</b> Price and offer badge up top, sticky bar at the bottom.</figcaption></figure>
+      </div>
+
+    <h3>The size picker <span class="tag">H1+H3</span><span class="tag">H5</span></h3>
+    <div class="pair clip">
+        <figure><a href="img/before-buybox-390.jpg"><img src="img/before-buybox-390.jpg" width="600" height="1307" loading="lazy" alt="Before: size chips, then Add to cart, then price and offer prose"></a><figcaption><b>Before.</b> No fit help. Offer as prose.</figcaption></figure>
+        <figure><a href="img/after-picker-390.jpg"><img src="img/after-picker-390.jpg" width="600" height="1299" loading="lazy" alt="After: Waist runs true to size, Size and fit guide button, size chips, Add a 2nd pair checkbox"></a><figcaption><b>After.</b> One fit line, a guide button, a 2nd-pair checkbox.</figcaption></figure>
+      </div>
+
+    <h3>The size guide <span class="tag">H1+H3</span></h3>
+    <div class="pair">
+        <figure><a href="img/before-size-chart-1440.jpg"><img src="img/before-size-chart-1440.jpg" width="800" height="750" loading="lazy" alt="Before: size chart with a size-up note"></a><figcaption><b>Before.</b> "Choose the larger size for a relaxed fit."</figcaption></figure>
+        <figure><a class="clip" href="img/after-size-guide-390.jpg"><img src="img/after-size-guide-390.jpg" width="600" height="1299" loading="lazy" alt="After: guide opens on the tapered-leg line"></a><figcaption><b>After.</b> Opens on the taper. The chart stays label-only until the brand supplies leg measurements.</figcaption></figure>
+      </div>
+
+    <h3>The cart <span class="tag">H5</span></h3>
+    <div class="pair">
+        <figure><a href="img/before-cart-1440.jpg"><img src="img/before-cart-1440.jpg" width="800" height="750" loading="lazy" alt="Before: cart with one pair, protection added to checkout"></a><figcaption><b>Before.</b> No offer. Protection pre-added.</figcaption></figure>
+        <figure><a class="clip" href="img/after-cart-390.jpg"><img src="img/after-cart-390.jpg" width="600" height="1299" loading="lazy" alt="After: cart with two pairs and a 2nd pair minus 40 percent line"></a><figcaption><b>After.</b> A "2nd pair −40%" line. Protection is opt-in.</figcaption></figure>
+      </div>
+  </section>
+
+  </div>
+
+  <div class="panel" role="tabpanel" id="creative-angle" aria-labelledby="tab-creative-angle">
+
+  <section aria-labelledby="ad">
+    <h2 id="ad">Ad to page: outdoor workers</h2>
+    <p>The reviews hold an audience the page never speaks to: people who work on their knees. The most-voted review in my sample (95 helpful votes) is from a landscaper.</p>
+    <blockquote>"I work in the landscaping and playground building field, and these pants are the best I’ve ever experienced wearing"<cite>Mark W., 5 stars, 2020</cite></blockquote>
+    <p>The knee panels show in every product photo and aren't named anywhere. I wrote a Meta ad concept around the hook "Spend your day on your knees?" and a page variant that repeats it: the headline "Made for a day on your knees", a crouching hero shot, three benefits with knee panels first, and Mark's review right under the buy box. The buy-box changes are identical to the base redesign, so an ad split only tests the message. I'd judge it on cost per add-to-cart against the base redesign, same ad.</p>
+    <div class="finding">
+      <figure class="pair pair--one clip">
+        <a href="img/work-first-390.jpg"><img src="img/work-first-390.jpg" width="600" height="1299" loading="lazy" alt="Worker variant: Made for a day on your knees above the product name, crouching hero photo"></a>
+        <figcaption>The worker variant's first screen.</figcaption>
+      </figure>
+      <div>
+        <h3>Three angles I rejected</h3>
+        <ul class="list">
+          <li>Hikers. The biggest group in the reviews (15 of 64), but it's what the page already says, and it leans on "warm and dry" right where water resistance runs out.</li>
+          <li>Gift buyers. Right season, but they size without the wearer, and the gift-sizing help (H4) isn't built.</li>
+          <li>Hunters. The pitch is "quiet fabric", and a 3-star review says the knee panel spooked a moose.</li>
+        </ul>
+        <div class="links">
+          <a class="btn btn--dark" href="after/?angle=work">Open the worker variant</a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  </div>
+
+  <div class="panel" role="tabpanel" id="hypotheses-results" aria-labelledby="tab-hypotheses-results">
+
+  <section aria-labelledby="hyp">
+    <h2 id="hyp">Hypotheses</h2>
+    <p>Three carried forward, tested in this order, one at a time, because all three sit in the same buy box.</p>
+
+    <h3><span class="tag">H6</span>Price first, sticky Add to cart</h3>
+    <p>Moving the price under the title and adding a sticky mobile bar (it reads "Select size" until a size is chosen) will raise mobile add-to-cart rate.</p>
+
+    <h3><span class="tag">H1+H3</span>Fit at the picker</h3>
+    <p>Putting "Waist runs true to size." and a full-width Size &amp; fit guide button above the waist chips, with the guide opening on "The leg tapers to a slim calf. Sizing up won't add calf room; it just makes the waist loose.", and deleting the size-up advice, will raise net kept orders per visitor and lower size-related returns.</p>
+
+    <h3><span class="tag">H5</span>An offer you can see</h3>
+    <p>A "2nd pair 40% off" badge at the price, an "Add a 2nd pair" checkbox and a discount line in the cart will raise the share of orders with two pairs.</p>
+
+    <h3>How I ranked them</h3>
+    <p>Each finding became one hypothesis, scored 1 to 10 on Impact (how many shoppers it reaches, and how close to the purchase), Confidence (strength of evidence, capped at 8 because I have no analytics) and Ease. The score is the plain average. H1 started at 7.7 and dropped to 6.7 when I moved the calf warning off the picker and into the guide: it reaches fewer people there.</p>
+    <div class="scroll">
+      <table>
+        <thead><tr><th>ID</th><th>Hypothesis</th><th>I</th><th>C</th><th>E</th><th>Score</th><th>Call</th></tr></thead>
+        <tbody>
+          <tr><td class="num">H3</td><td>Fit help at the waist picker</td><td class="num">7</td><td class="num">6</td><td class="num">8</td><td class="num">7.0</td><td>Carried, with H1</td></tr>
+          <tr><td class="num">H1</td><td>"Waist runs true" at the picker, taper in the guide</td><td class="num">6</td><td class="num">5</td><td class="num">9</td><td class="num">6.7</td><td>Carried, with H3</td></tr>
+          <tr><td class="num">H6</td><td>Price first, sticky mobile Add to cart</td><td class="num">6</td><td class="num">6</td><td class="num">8</td><td class="num">6.7</td><td>Carried</td></tr>
+          <tr><td class="num">H5</td><td>Visible 2nd-pair offer, page to cart</td><td class="num">8</td><td class="num">5</td><td class="num">5</td><td class="num">6.0</td><td>Carried</td></tr>
+          <tr class="out"><td class="num">H4</td><td>Gift sizing: measure a pair he already wears</td><td class="num">6</td><td class="num">5</td><td class="num">5</td><td class="num">5.3</td><td>Not carried: needs H2's data</td></tr>
+          <tr class="out"><td class="num">H2</td><td>Size chart with leg measurements</td><td class="num">6</td><td class="num">5</td><td class="num">4</td><td class="num">5.0</td><td>Not carried: measurements aren't published</td></tr>
+        </tbody>
+      </table>
+    </div>
+  </section>
+
+  <section aria-labelledby="result">
+    <h2 id="result">Result</h2>
+    <p class="note">Not run. No traffic access.</p>
+    <p style="margin-top:16px">The plan, written before anything goes live. Each test runs 50/50 by visitor with a fixed horizon and no peeking. Baselines are public benchmarks, not Northbound's numbers.</p>
+    <div class="scroll">
+      <table>
+        <thead><tr><th>Test</th><th>Primary metric</th><th>Sample needed (both arms)</th></tr></thead>
+        <tbody>
+          <tr><td class="num">H6</td><td>Mobile add-to-cart rate, 6.0% → 6.6%</td><td class="num">51,480 mobile visitors</td></tr>
+          <tr><td class="num">H1+H3</td><td>Net kept orders per visitor, 1.38% → 1.59%<br>Co-primary: size-related return rate, 8% → 6%</td><td class="num">107,082 visitors<br>5,108 orders</td></tr>
+          <tr><td class="num">H5</td><td>Orders with two pairs, 5% → 7.5%</td><td class="num">2,942 orders</td></tr>
+        </tbody>
+      </table>
+    </div>
+    <p class="formula">weeks = visitors needed ÷ weekly PDP sessions</p>
+    <p>With Northbound's numbers I'd fill this in. For the order-based metrics, use weekly orders instead. Returns only count once the 60-day window closes, so the H1+H3 read comes about 12 weeks after the last order.</p>
+  </section>
+
+  <section aria-labelledby="next">
+    <h2 id="next">What I'd do next</h2>
+    <ul class="list">
+      <li>Ask the brand for leg measurements: thigh, knee, leg opening and rise for each waist. That unlocks H2 (a real pants size chart) and then H4, a "measure a pair he already wears" guide. 8 of 64 reviews were bought for someone else.</li>
+      <li>Watch H1. The calf warning now sits one tap away. If calf-related returns don't move, or fewer than about 1 in 5 buyers open the guide, the next test puts the taper line at the picker itself.</li>
+    </ul>
+  </section>
+
+  <section aria-labelledby="cleanup">
+    <h2 id="cleanup">Cleanup list</h2>
+    <p>Fixes that don't need a test.</p>
+    <ul class="list">
+      <li>Package protection (+CA$5.64) is pre-added and folded into the Checkout button.</li>
+      <li>Reviews are the last section, can't be filtered by size or use, and the summary is labelled "Ai Overview:".</li>
+      <li>The FAQ skips calf fit, boots and delivery time.</li>
+      <li>Mobile Lighthouse score 35, LCP 20.6s. The page loads a 29-image gallery covering every colour.</li>
+      <li>White on the brand orange is about 3.3:1, and the Size chart link is 14px tall.</li>
+      <li>Section titles aren't headings, and the looping video has no pause control.</li>
+      <li>The URL says "waterproof" and the title says "Water Resistant". The review count reads 1507 in one place and 1,508 in another.</li>
+    </ul>
+  </section>
+
+  </div>
+
+  <p class="foot-note">Unsolicited concept. Not affiliated with Northbound Gear. Product photos and review quotes are Northbound's, shown only to illustrate the redesign. <a class="back" href="../../#work">Back to the portfolio</a></p>
+</main>
+<script>
+(() => {
+  const bar = document.querySelector('.tabs');
+  const tabs = [...bar.querySelectorAll('[role="tab"]')];
+  const panels = tabs.map(t => document.getElementById(t.getAttribute('aria-controls')));
+  const alias = { hypotheses: 'hypotheses-results' };
+
+  function show(i, scroll) {
+    tabs.forEach((t, j) => {
+      t.setAttribute('aria-selected', i === j);
+      t.tabIndex = i === j ? 0 : -1;
+      panels[j].hidden = i !== j;
+    });
+    // only re-align when the bar is already stuck, so switching never scrolls the title away
+    if (scroll && bar.getBoundingClientRect().top <= 1)
+      scrollTo(0, panels[i].getBoundingClientRect().top + scrollY - bar.offsetHeight);
+  }
+
+  // the hash may name a panel, an alias, or any id inside a panel (#ba, #result, ...)
+  function route() {
+    const id = location.hash.slice(1);
+    const el = id && document.getElementById(alias[id] || id);
+    const i = panels.indexOf(el && el.closest('[role="tabpanel"]'));
+    if (i < 0) return false;
+    show(i);
+    el.scrollIntoView();
+    return true;
+  }
+
+  tabs.forEach((t, i) => t.addEventListener('click', () => {
+    show(i, true);
+    history.replaceState(null, '', '#' + panels[i].id);
+  }));
+  bar.addEventListener('keydown', e => {
+    const d = { ArrowRight: 1, ArrowLeft: -1 }[e.key];
+    if (!d) return;
+    e.preventDefault();
+    const t = tabs[(tabs.indexOf(e.target) + d + tabs.length) % tabs.length];
+    t.focus();
+    t.click();
+  });
+  addEventListener('hashchange', route);
+
+  bar.hidden = false;
+  if (!route()) show(0);
+})();
+</script>
+</body>
+</html>

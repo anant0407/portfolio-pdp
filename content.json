@@ -67,7 +67,7 @@
   "trustBar": [
     {
       "title": "Ships immediately",
-      "body": "Available [FILL: date]"
+      "body": "Available always"
     },
     {
       "title": "30-day guarantee"
@@ -156,26 +156,24 @@
     "skills": {
       "eyebrow": "In the box",
       "heading": "What comes with it",
-      "lead": "Eight things I would use unsupervised in week one. The row scrolls sideways."
+      "lead": ""
     },
     "how": {
       "eyebrow": "How it works",
       "heading": "Three steps, and the rule that ends each one",
-      "lead": "The same order every time, whether the site gets a thousand sessions a month or a million."
+      "lead": ""
     },
     "work": {
       "eyebrow": "Recommended products",
       "heading": "Recently shipped",
-      "lead": "Six projects, all self-initiated. The grid filters to whichever role is selected above."
+      "lead": ""
     },
     "reviews": {
       "heading": "Reviews"
     },
     "compare": {
       "eyebrow": "Compare",
-      "heading": "Against the other two ways to fill this",
-      "lead": "Roughly the same monthly cost, spent three ways. The rows are the parts of the job that usually go missing."
-    },
+      "heading": "Against the other two ways to fill this"},
     "faq": {
       "eyebrow": "Questions",
       "heading": "Before you add to team",
@@ -202,6 +200,42 @@
   ],
 
   "projects": [
+    {
+      "id": "free-to-eat-homepage",
+      "title": "Homepage redesign: Free To Eat",
+      "blurb": "Homepage concept for an allergen-free cookie brand.",
+      "tag": "both",
+      "image": "assets/free-to-eat-before-after.jpg",
+      "alt": "Free To Eat homepage on a phone, live version beside the redesign",
+      "caption": "before / after, mobile",
+      "placeholder": false,
+      "caseUrl": "case-studies/free-to-eat/",
+      "modal": {
+        "situation": "Free To Eat bakes allergen-free cookies in its own bakery in Loveland, Colorado, a claim no competitor I checked makes. Its homepage opens on a snack-pack launch notice. Unsolicited, with no client and no traffic access.",
+        "found": "The first screen fails a 5-second test: \"TOP 9 ALLERGEN FREE\" appears only on the pack in the photo. The certifications are one logo image about 75% down, the allergen claim is worded four ways across the site, and mobile LCP is 12.7s.",
+        "hypothesis": "Replacing the launch hero with \"A real, soft cookie.\", a live-text top 9 line and a \"Shop soft-baked cookies\" button will send more homepage visitors to a product page.",
+        "result": "Not run: no traffic access. Pre-registered instead, on assumed baselines: 3,763 visitors per arm for homepage-to-PDP click-through (30% to 33%), 36,693 for homepage-session CVR (2.0% to 2.3%), and 25,740 for add-to-cart rate (6.0% to 6.6%).",
+        "changed": "A rebuilt homepage with a promise hero, a live-text proof band and three credited taste reviews, one offer instead of four, and mobile LCP down from 14.7s to 1.7s in a local stand-in test (not Lighthouse). Plus a gluten-free hero variant: \"Gluten-free. You'd never know.\""
+      }
+    },
+    {
+      "id": "northbound-pdp",
+      "title": "PDP redesign: Northbound Gear Adventure Pants",
+      "blurb": "Unsolicited concept. Why buyers pick the wrong size and miss the 2nd-pair offer, a rebuilt page around three hypotheses, and one ad-audience variant.",
+      "tag": "both",
+      "image": "assets/northbound-pdp-before-after.jpg",
+      "alt": "Northbound Gear product page on a phone, live version beside the redesign",
+      "caption": "before / after, mobile",
+      "placeholder": false,
+      "caseUrl": "case-studies/northbound-gear/",
+      "modal": {
+        "situation": "Northbound Gear's Adventure Pants page has 4.9 stars from 1,508 reviews, but on a phone the price and Add to cart sit 1,250px down. Unsolicited, with no client and no traffic access: what was at stake was a sizing problem visible in the brand's own reviews.",
+        "found": "The page says the fit is true to size and to size up for comfort, while 8 of 64 reviews I coded say the calf is slim and two sized up into a loose waist. The 2nd-pair 40% offer, relevant to the 14 of 64 reviewers who own two or more pairs, is two paragraphs of prose and disappears in the cart.",
+        "hypothesis": "Putting \"Waist runs true to size.\" and a Size & fit guide that opens on the tapered leg at the waist picker will raise net kept orders per visitor and lower size-related returns.",
+        "result": "Not run: no traffic access. Pre-registered instead: 53,541 visitors per arm for net kept orders (1.38% to 1.59%) and 2,554 orders per arm for size returns (8% to 6%), read about 12 weeks after the last order.",
+        "changed": "A rebuilt page with three tagged changes (price first, fit at the picker, a visible 2nd-pair offer), plus a worker-audience variant built from the most-voted review."
+      }
+    },
     {
       "id": "checkout-teardown",
       "title": "Checkout teardown: [regional trade supplier]",
@@ -358,49 +392,34 @@
   "faq": [
     {
       "question": "Have you done this for a real client?",
-      "answer": "No. Everything on this page is self-initiated and labelled that way on every case. What I'd point you at instead is the reasoning: each project shows the territories I rejected and why, what the research came back with, and where a hypothesis broke. You can tell more about someone's judgement from the work they threw out than from the work that survived, and that is usually the part a spec portfolio leaves out."
+      "answer": "I'm switching over from a career in Computer Science, so the work here is self-initiated. The methods are the same as what I would use for a client."
     },
     {
       "question": "You're applying for two different jobs.",
-      "answer": "At a company with no dedicated experimentation owner, which by Speero's benchmark is roughly 40% of brands, these are one job: somebody still has to decide what to test and what the result means for the creative. At a large agency with a planning department and a separate CRO function they're two jobs, and I'd apply for one of them. If you're the second kind of employer, the link you were sent only shows the relevant role."
+      "answer": "I'm open to various roles as I would love to get a step into the industry. I have a strong interest in both creative and web strategy, and I believe my skills can be valuable in either area."
     },
     {
       "question": "How many tests have you actually run?",
-      "answer": "Not many. I'd be suspicious of a junior who said otherwise, and so should you be. Published base rates put experiment success at around one in three, dropping to 10% to 20% in domains that have already been optimised hard, so a junior showing five wins and no losses is either working from a very small sample or has picked what to show you. There's an access problem underneath that as well: Google sunset Optimize in September 2023, and with it went the free way of accumulating real tests without already having the job that hands you the traffic. What does transfer is how I prioritise, how I decide a test is finished, what I do with a site that will never reach significance, and one test I got wrong. All of that is on this page."
-    },
-    {
-      "question": "What's your stopping rule?",
-      "answer": "Sample size and duration are set before the variant is built, worked out from the baseline conversion rate and the smallest effect that would be worth acting on. Minimum one full business cycle, usually two weeks, so weekday and weekend traffic are both represented. No peeking at partial results to decide whether to keep going. And if the test reaches its duration without reaching the planned sample, it gets recorded as inconclusive and stays that way, instead of running on until the numbers happen to look like something."
-    },
-    {
-      "question": "How do you prioritise?",
-      "answer": "[FILL: your actual framework in three sentences. Name it, say what you score on, and say what you do when a stakeholder wants a test that scores badly. The last part is the one you'll be asked about.]"
-    },
-    {
-      "question": "What if the site doesn't have enough traffic to test?",
-      "answer": "Most don't. Running a smaller version of the same test doesn't fix that, so the method has to change: session replay, support-ticket themes, five user interviews, sitting in on sales calls, a painted-door test on one element. What that gives you is direction, which is a weaker claim than significance, and the job is then to say which of the two you're holding. Reporting a 15% lift off 40 conversions is how people get caught."
-    },
-    {
-      "question": "What does the 30-day guarantee mean?",
-      "answer": "A prioritised test roadmap in week one, with the ranking method written down so you can argue with it. A stopping rule applied to whatever is already running, including a call on anything that should be stopped now. A research pass that doesn't depend on having traffic. One experiment designed, built, shipped and analysed end to end. And one written brief saying what the result means for what gets made next."
+      "answer": "Not many yet. Running a real test needs a brand's traffic, so both case studies here are pre-registered with the sample size each test would need."
     },
     {
       "question": "Returns?",
-      "answer": "Test 04 lost. It's the second card in the grid, with the original hypothesis, the result, and what I'd do differently."
+      "answer": "You wouldn't need to :)"
     }
   ],
 
   "footer": {
     "eyebrow": "In stock",
     "heading": "Add to team",
-    "body": "Available [FILL: date]. Remote or [FILL: city]. One role at a time.",
+    "body": "Available all the time. Remote or On-site. One role at a time.",
     "colophon": "Built by the product. Analytics running. Source on GitHub."
   },
 
   "contact": {
-    "email": "[FILL: email]",
-    "linkedin": "",
-    "github": "",
-    "repo": ""
+    "emailUser": "anant0407",
+    "emailDomain": "gmail.com",
+    "linkedin": "https://www.linkedin.com/in/anant0407/",
+    "github": "https://github.com/anant0407",
+    "repo": "https://github.com/anant0407/portfolio-pdp"
   }
 }
