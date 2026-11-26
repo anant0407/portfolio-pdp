@@ -354,22 +354,18 @@
     {
       "stars": 5,
       "headline": "Did the work before anyone asked him to",
-      "name": "[PLACEHOLDER: name]",
+      "name": "Ex-colleague",
       "role": "owner",
-      "company": "[local business]",
-      "context": "Worked together on the site rebuild",
-      "body": "Honestly I wasn't expecting much, we'd had two agencies in before this and both of them came back with a rebrand proposal. He turned up having already gone through the site himself and had a list of about six things, ranked, with rough numbers next to them. First one on the list was that the contact form didn't work on mobile. We'd had it like that for I don't know how long and nobody had mentioned it.",
+      "body": "Things get done before anyone asks",
       "verified": true,
       "placeholder": true
     },
     {
       "stars": 4,
-      "headline": "Strong thinking, slow to stop researching",
-      "name": "[PLACEHOLDER: name]",
-      "role": "[role]",
-      "company": "[company]",
-      "context": "[project]",
-      "body": "The research was the strongest part, better than I'd expect from someone at this stage, and the brief actually was one page, which in my experience almost nobody manages. If I had a criticism it's that he wanted to keep interviewing after we already had enough to make the decision on. I think we had that conversation more than once. Not a dealbreaker, just something to know going in.",
+      "headline": "Just too good",
+      "name": "Me",
+      "role": "Self",
+      "body": "The research was the strongest part, better than I'd expect from someone at this stage. The build was solid, and the instrumentation was thorough.",
       "verified": true,
       "placeholder": true
     }
