@@ -663,7 +663,8 @@
     lastTrigger = trigger;
 
     var frame = $('#qlFrame');
-    paintFrame(frame, p);
+    /* the modal column is tall, so it can take its own image (e.g. after-only) */
+    paintFrame(frame, p.modalImage ? { image: p.modalImage, alt: p.modalAlt || p.alt } : p);
     captionChip(frame, p.caption);
 
     var variant = (d.variants || []).filter(function (v) { return v.id === p.tag; })[0];
@@ -700,6 +701,9 @@
        reader nothing. Start on the content region instead. */
     var body = $('#qlBody');
     if (body) body.focus({ preventScroll: true });
+    /* that autofocus already scrolled the close button into view, which
+       on a stacked phone layout pushes the image off the top */
+    dialog.scrollTop = 0;
   }
 
   if (document.readyState === 'loading') {

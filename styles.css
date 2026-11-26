@@ -772,6 +772,9 @@ a:hover { color: var(--ink-muted); }
 .modal__grid { display: grid; grid-template-columns: 1fr 1fr; min-height: 100%; }
 .modal__media { position: relative; min-height: 300px; }
 .modal__media .frame { position: absolute; inset: 0; border: 0; border-radius: 0; }
+/* screenshots are long phone captures: fill the width, pin the top,
+   let the bottom run off however tall the text column makes this */
+.modal__media .frame__img { object-position: top; }
 .modal__body { padding: 34px 32px; position: relative; }
 /* 32px circle, 44px target: the hit area is an invisible overlay so
    the visual weight stays small without shrinking the tap */
@@ -807,7 +810,7 @@ a:hover { color: var(--ink-muted); }
   letter-spacing: .1818em; text-transform: uppercase; color: var(--ink-faint);
 }
 .modal__spec dd { padding: 5px 0 16px; font-size: 0.9375rem; line-height: 1.6; color: var(--ink-muted); border-bottom: 1px solid var(--line); }
-.modal__actions { margin-top: 20px; }
+.modal__actions { margin: 18px 0 20px; }
 
 /* load failure notice */
 .loadfail { max-width: 620px; margin: 80px auto; padding: 0 var(--gutter); }

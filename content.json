@@ -82,72 +82,72 @@
       "id": "conversion-research",
       "category": "Research",
       "title": "Conversion research",
-      "image": "",
-      "alt": "Session replay with a drop-off marked",
-      "caption": "replay, step two",
+      "image": "assets/skills/conversion-research.gif",
+      "alt": "Animated world map with a line tracing across it",
+      "caption": "",
       "menu": ["Edit", "Duplicate", "Delete"]
     },
     {
       "id": "experiment-design",
       "category": "Experimentation",
       "title": "Experiment design",
-      "image": "",
-      "alt": "A sample size and duration sheet",
-      "caption": "sample size sheet",
+      "image": "assets/skills/experiment-design.gif",
+      "alt": "Animated robot arms arranging blocks on a board",
+      "caption": "",
       "menu": ["Edit", "Duplicate", "Delete"]
     },
     {
       "id": "shopify-cro",
       "category": "Commerce",
       "title": "Shopify CRO",
-      "image": "",
-      "alt": "A cart drawer mid-edit",
-      "caption": "cart drawer",
+      "image": "assets/skills/shopify.svg",
+      "alt": "Shopify logo",
+      "caption": "",
       "menu": ["Edit", "Duplicate", "Delete"]
     },
     {
       "id": "creative-testing",
       "category": "Creative",
       "title": "Creative testing and UGC",
-      "image": "",
-      "alt": "A board of ad variants",
-      "caption": "variant board",
+      "image": "assets/skills/creative-testing.gif",
+      "alt": "Animated hands fitting puzzle pieces together",
+      "caption": "",
       "menu": ["Edit", "Duplicate", "Delete"]
     },
     {
       "id": "meta-ads",
       "category": "Paid",
       "title": "Meta Ads",
-      "image": "",
-      "alt": "Ads manager filtered to one campaign",
-      "caption": "ads manager",
+      "image": "assets/skills/meta.svg",
+      "alt": "Meta logo",
+      "caption": "",
       "menu": ["Edit", "Duplicate", "Delete"]
     },
     {
       "id": "klaviyo-flows",
       "category": "Lifecycle",
       "title": "Klaviyo email flows",
-      "image": "",
-      "alt": "A flow builder canvas",
-      "caption": "flow builder",
+      "image": "assets/skills/klaviyo.png",
+      "alt": "Klaviyo logo",
+      "caption": "",
       "menu": ["Edit", "Duplicate", "Delete"]
     },
     {
       "id": "front-end-build",
       "category": "Build",
       "title": "Front-end build",
-      "image": "",
-      "alt": "A diff of the variant that shipped",
-      "caption": "variant diff",
+      "image": "assets/skills/front-end-build.png",
+      "alt": "Illustration of a website being built with a crane",
+      "caption": "",
       "menu": ["Edit", "Duplicate", "Delete"]
     },
     {
       "id": "instrumentation",
       "category": "Measurement",
       "title": "Analytics instrumentation",
-      "image": "",
-      "alt": "An event map before tagging",
-      "caption": "event map",
+      "image": "assets/skills/instrumentation.png",
+      "alt": "Illustration of charts and a dashboard",
+      "caption": "",
       "menu": ["Edit", "Duplicate", "Delete"]
     }
   ],
@@ -206,6 +206,8 @@
       "blurb": "Homepage concept for an allergen-free cookie brand.",
       "tag": "both",
       "image": "assets/free-to-eat-before-after.jpg",
+      "modalImage": "assets/free-to-eat-after.jpg",
+      "modalAlt": "Redesigned Free To Eat homepage on a phone",
       "alt": "Free To Eat homepage on a phone, live version beside the redesign",
       "caption": "before / after, mobile",
       "placeholder": false,
@@ -224,6 +226,8 @@
       "blurb": "Unsolicited concept. Why buyers pick the wrong size and miss the 2nd-pair offer, a rebuilt page around three hypotheses, and one ad-audience variant.",
       "tag": "both",
       "image": "assets/northbound-pdp-before-after.jpg",
+      "modalImage": "assets/northbound-pdp-after.jpg",
+      "modalAlt": "Redesigned Northbound Gear product page on a phone",
       "alt": "Northbound Gear product page on a phone, live version beside the redesign",
       "caption": "before / after, mobile",
       "placeholder": false,
@@ -418,8 +422,6 @@
   "contact": {
     "emailUser": "anant.sharma0704",
     "emailDomain": "gmail.com",
-    "linkedin": "https://www.linkedin.com/in/anant0407/",
-    "github": "https://github.com/anant0407",
-    "repo": "https://github.com/anant0407/portfolio-pdp"
+    "linkedin": "https://www.linkedin.com/in/anant0407/"
   }
 }
