@@ -659,13 +659,32 @@
     });
   }
 
+  function showShots(p, view) {
+    ['before', 'after'].forEach(function (side) {
+      var img = $(side === 'before' ? '#qlBefore' : '#qlAfter');
+      img.src = p.shots[view][side];
+      img.alt = (side === 'before' ? 'Before: ' : 'After: ') + p.title + ', full page at ' + view + ' width';
+    });
+    $$('#qlToggle button').forEach(function (b) {
+      b.setAttribute('aria-pressed', String(b.dataset.view === view));
+      b.onclick = function () { showShots(p, b.dataset.view); };
+    });
+  }
+
   function openQuickLook(d, p, trigger) {
     lastTrigger = trigger;
 
+    /* full-page before/after captures when the project has them,
+       otherwise the single card image */
     var frame = $('#qlFrame');
-    /* the modal column is tall, so it can take its own image (e.g. after-only) */
-    paintFrame(frame, p.modalImage ? { image: p.modalImage, alt: p.modalAlt || p.alt } : p);
-    captionChip(frame, p.caption);
+    $('#qlCompare').hidden = $('#qlToggle').hidden = !p.shots;
+    frame.hidden = !!p.shots;
+    if (p.shots) {
+      showShots(p, 'phone');
+    } else {
+      paintFrame(frame, p);
+      captionChip(frame, p.caption);
+    }
 
     var variant = (d.variants || []).filter(function (v) { return v.id === p.tag; })[0];
     text($('#qlTag'), variant ? variant.label : p.tag);

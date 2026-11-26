@@ -238,18 +238,24 @@
      QUICK-LOOK MODAL — native <dialog>, focus trap + Esc for free
      ============================================================ -->
 <dialog class="modal" id="quicklook" aria-labelledby="qlTitle">
-  <div class="modal__grid">
-    <div class="modal__media">
-      <div class="frame" id="qlFrame"></div>
+  <div class="modal__bar">
+    <div class="modal__toggle" id="qlToggle" role="group" aria-label="Screenshot width">
+      <button class="btn btn--sm" type="button" data-view="phone" aria-pressed="true">Phone</button>
+      <button class="btn btn--sm" type="button" data-view="desktop" aria-pressed="false">Desktop</button>
     </div>
-    <div class="modal__body" id="qlBody" tabindex="-1">
-      <button class="modal__close" type="button" id="qlClose" aria-label="Close quick look">&times;</button>
-      <p class="modal__meta"><span id="qlTag"></span><span id="qlFlag"></span></p>
-      <h2 class="modal__title" id="qlTitle"></h2>
-      <p class="modal__blurb" id="qlBlurb"></p>
-      <p class="modal__actions"><a class="btn btn--dark" id="qlCase" href="#">Read the full case &rarr;</a></p>
-      <dl class="modal__spec" id="qlSpec"></dl>
-    </div>
+    <button class="modal__close" type="button" id="qlClose" aria-label="Close quick look">&times;</button>
+  </div>
+  <div class="modal__compare" id="qlCompare">
+    <figure><figcaption>Before</figcaption><img id="qlBefore" alt=""></figure>
+    <figure><figcaption>After</figcaption><img id="qlAfter" alt=""></figure>
+  </div>
+  <div class="frame" id="qlFrame"></div>
+  <div class="modal__body" id="qlBody" tabindex="-1">
+    <p class="modal__meta"><span id="qlTag"></span><span id="qlFlag"></span></p>
+    <h2 class="modal__title" id="qlTitle"></h2>
+    <p class="modal__blurb" id="qlBlurb"></p>
+    <p class="modal__actions"><a class="btn btn--dark" id="qlCase" href="#">Read the full case &rarr;</a></p>
+    <dl class="modal__spec" id="qlSpec"></dl>
   </div>
 </dialog>
 
