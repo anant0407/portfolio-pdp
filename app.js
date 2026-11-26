@@ -248,6 +248,7 @@
     var cap = $('#mainCap');
     var items = d.gallery || [];
     if (!items.length) return;
+    rail.hidden = items.length < 2;
 
     var buttons = [];
 

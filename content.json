@@ -28,11 +28,7 @@
   },
 
   "gallery": [
-    { "image": "", "alt": "This site with its analytics panel open", "caption": "Ships instrumented." },
-    { "image": "", "alt": "A ranked test roadmap with the ranking method visible", "caption": "Prioritisation method, written down." },
-    { "image": "", "alt": "A one-page brief", "caption": "One page. This is the deliverable." },
-    { "image": "", "alt": "A results readout showing a loss", "caption": "Test 04. Did not win." },
-    { "image": "", "alt": "Four rejected territories, struck through", "caption": "What didn't make it, and why." }
+    { "image": "assets/anant.jpg", "alt": "Anant smiling in a plaid shirt outside a brick house at night", "caption": "" }
   ],
 
   "variants": [
